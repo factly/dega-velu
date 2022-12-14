@@ -5,9 +5,9 @@ import { jsx } from 'theme-ui';
 import gql from 'graphql-tag';
 import parseEditorJsData from 'src/utils/parseEditorJsData';
 import FormatPageLayout from 'components/FormatPageLayout';
-
 import { client } from 'store/client';
 import Head from 'next/head';
+import parseTiptapContent from 'src/utils/parseTiptapEditorData';
 
 function CategoryDetailsAll({ data }) {
   //  const { dega } = data;
@@ -40,7 +40,7 @@ function CategoryDetailsAll({ data }) {
             textTransform: 'capitalize',
           }}
         >
-          {item.name} 
+          {item.name}
         </h1>
         <div
           id="category-description"
@@ -50,7 +50,7 @@ function CategoryDetailsAll({ data }) {
             px: (theme) => `${theme.space.spacing5}`,
           }}
         >
-          {parseEditorJsData({ content: item.description })}
+          {process.browser && parseTiptapContent(item.description_html)}
         </div>
         {item.description && isReadMoreNeeded && (
           <button
@@ -92,6 +92,7 @@ export async function getServerSideProps({ params }) {
       query ($slug: String!) {
         category(slug: $slug) {
           description
+          description_html
           id
           medium {
             alt_text

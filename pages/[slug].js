@@ -22,7 +22,7 @@ export default function PostDetails({ post }) {
   // const [relatedPosts, setRelatedPosts] = React.useState(posts.slice(0, 10));
   // const [hasNextPageRelatedPost, setHasNextPageRelatedPost] = React.useState(true);
   const [observer, setObserver] = React.useState({
-    observe: () => {},
+    observe: () => { },
   });
   // const handleLoadMore = () => {
   //   if (!hasNextPage) return false;
@@ -214,6 +214,7 @@ export async function getServerSideProps({ params }) {
         post(slug: $slug) {
           published_date
           description
+          description_html
           excerpt
           id
           schemas
