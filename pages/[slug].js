@@ -255,6 +255,7 @@ export async function getServerSideProps({ params }) {
         post(slug: $slug) {
           published_date
           description
+          description_html
           excerpt
           id
           schemas

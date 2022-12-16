@@ -7,7 +7,7 @@ import ShareButtonGroup from './ShareButtonGroup';
 import FactCheckWidget from './FactCheckWidget';
 import Tag from './Tag';
 import Excerpt from './Excerpt';
-import parseEditorJsData from '../../src/utils/parseEditorJsData';
+import parseTiptapContent from 'src/utils/parseTiptapEditorData';
 /**
  * TODO: URI encoding
  * TODO: borderradius in theme ui
@@ -95,7 +95,7 @@ const Post = ({ post, observer }) => {
         >
           {post.claims && <FactCheckWidget claims={post.claims} />}
           <div className="parsed">
-            {parseEditorJsData({ content: post.description, scripts: true })}
+            {process.browser && parseTiptapContent(post.description_html)}
           </div>
           {post.claims &&
             post.claims.map((claim, i) => (
@@ -136,10 +136,32 @@ const Post = ({ post, observer }) => {
                 )}
 
                 <div className="parsed">
-                  {parseEditorJsData({ content: claim.description, scripts: true })}
+                  {process.browser && parseTiptapContent(post.description_html)}
                 </div>
               </React.Fragment>
             ))}
+          <div
+            sx={{
+              bg: (theme) => `${theme.colors.gray[1]}`,
+              mt: (theme) => `${theme.space.spacing5}`,
+            }}
+          >
+            {/*post.claims.map(claim=>{
+   return claim.review_sources.map(review_source=>{
+    return <a href={review_source.url} target="_blank" sx={{display:"block",}}>{review_source.description}</a> 
+      })
+    })
+  */}
+
+            {post.claims.map((claim) =>
+              claim.review_sources.map((review_source) => (
+                <a href={review_source.url} target="_blank" sx={{ display: 'block' }}>
+                  {review_source.description}
+                </a>
+              )),
+            )}
+          </div>
+
           <div
             sx={{
               display: 'flex',
