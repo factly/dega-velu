@@ -154,8 +154,14 @@ const Post = ({ post, observer }) => {
   */}
 
             {post.claims.map((claim) =>
-              claim.review_sources.map((review_source) => (
-                <a href={review_source.url} target="_blank" sx={{ display: 'block' }}>
+              claim.review_sources.map((review_source, i) => (
+                <a
+                  href={review_source.url}
+                  target="_blank"
+                  sx={{ display: 'block' }}
+                  key={1}
+                  rel="noreferrer noopener"
+                >
                   {review_source.description}
                 </a>
               )),
