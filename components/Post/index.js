@@ -159,7 +159,7 @@ const Post = ({ post, observer }) => {
                   href={review_source.url}
                   target="_blank"
                   sx={{ display: 'block' }}
-                  key={1}
+                  key={i}
                   rel="noreferrer noopener"
                 >
                   {review_source.description}
