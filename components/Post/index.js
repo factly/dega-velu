@@ -27,7 +27,7 @@ const Post = ({ post, observer }) => {
     <>
       {/* <Seo title={post.title} description={post.excerpt} />
       <Helmet>
-        {post.schemas.map((schema, i) => (
+        {post.schemas?.map((schema, i) => (
           <script key={i} type="application/ld+json">
             {JSON.stringify(schema)}
           </script>
@@ -98,7 +98,7 @@ const Post = ({ post, observer }) => {
             {process.browser && parseTiptapContent(post.description_html)}
           </div>
           {post.claims &&
-            post.claims.map((claim, i) => (
+            post.claims?.map((claim, i) => (
               <React.Fragment key={i}>
                 {post.claims.length > 1 && (
                   <div
@@ -146,15 +146,15 @@ const Post = ({ post, observer }) => {
               mt: (theme) => `${theme.space.spacing5}`,
             }}
           >
-            {/*post.claims.map(claim=>{
-   return claim.review_sources.map(review_source=>{
+            {/*post.claims?.map(claim=>{
+   return claim.review_sources?.map(review_source=>{
     return <a href={review_source.url} target="_blank" sx={{display:"block",}}>{review_source.description}</a> 
       })
     })
   */}
 
-            {post.claims.map((claim) =>
-              claim.review_sources.map((review_source, i) => (
+            {post.claims?.map((claim) =>
+              claim.review_sources?.map((review_source, i) => (
                 <a
                   href={review_source.url}
                   target="_blank"
@@ -186,7 +186,7 @@ const Post = ({ post, observer }) => {
                 },
               }}
             >
-              {post.tags.map((tag, i) => (
+              {post.tags?.map((tag, i) => (
                 <Tag key={i} url={tag.slug} name={tag.name} />
               ))}
             </div>

@@ -136,7 +136,7 @@ function FactCheckWidget({ claims }) {
             className="sliderF"
             sx={{ display: 'flex', overflowX: 'auto', pb: (theme) => `${theme.space.spacing6}` }}
           >
-            {claims.map((claim, i) => (
+            {claims?.map((claim, i) => (
               <div
                 id={`claim-${i}`}
                 key={i}

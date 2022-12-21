@@ -7,7 +7,7 @@ import Link from 'next/link';
 const Categories = ({ categories }) => {
   const list =
     categories &&
-    categories.map((category, index) => (
+    categories?.map((category, index) => (
       <div
         key={`category${index}`}
         sx={{

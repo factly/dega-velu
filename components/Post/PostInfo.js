@@ -33,7 +33,7 @@ const PostInfo = ({ users, categories, date }) => (
     >
       <div sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline' }}>
         {users &&
-          users.map((user, i, arr) => (
+          users?.map((user, i, arr) => (
             <React.Fragment key={i}>
               <Link passHref href={`/author/${user.id}`}>
                 <a
@@ -66,7 +66,7 @@ const PostInfo = ({ users, categories, date }) => (
             >
               in
             </span>
-            {categories.map((category, i, arr) => (
+            {categories?.map((category, i, arr) => (
               <React.Fragment key={i}>
                 <Link passHref href={`/category/${category.slug}`}>
                   <a

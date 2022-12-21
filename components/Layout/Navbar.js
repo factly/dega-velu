@@ -11,9 +11,7 @@ export default function NavBar({ logo, menu }) {
   const mainMenu = {
     menu: [
       { name: 'Fact Checks', title: 'Fact Checks', url: '/format/fact-check' },
-      { name: 'Weekly Updates', title: 'Weekly Updates', url: '/category/weekly-update' },
-      { name: 'Podcast', title: 'Podcast', url: '/podcasts' },
-      { name: 'Resources', title: 'Resources', url: '/list-of-covid-19-resources-for-journalists' },
+      { name: 'Article', title: 'Articles', url: '/format/article' },
     ],
     id: '1',
     slug: 'main',
@@ -137,7 +135,7 @@ export default function NavBar({ logo, menu }) {
                 </Link>
               </li>
 
-              {mainMenu?.menu.map((menuItem, index) => (
+              {mainMenu?.menu?.map((menuItem, index) => (
                 <li key={menuItem.title}>
                   <Link passHref key={`navbar-${index}`} href={menuItem.url} title={menuItem.title}>
                     <a

@@ -42,7 +42,7 @@ function FormatPage({ data }) {
                 px: [null, null, (theme) => `${theme.space.spacing6}`],
               }}
             >
-              {filteredPosts.map((item, index) => (
+              {filteredPosts?.map((item, index) => (
                 <StoryCard
                   key={index}
                   cardStyle="iframely"

@@ -90,7 +90,7 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
                   <a>All</a>
                 </ActiveLink>
               </li>
-              {formats.map((tab, index) => (
+              {formats?.map((tab, index) => (
                 <li key={index}>
                   <ActiveLink
                     passHref
@@ -114,7 +114,7 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
                 gridGap: (theme) => `${theme.space.spacing7}`,
               }}
             >
-              {filteredPosts.map((item, index) => (
+              {filteredPosts?.map((item, index) => (
                 <StoryCard
                   key={index}
                   cardStyle="iframely"

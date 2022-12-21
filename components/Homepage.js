@@ -44,24 +44,23 @@ function Homepage({ data }) {
           </div>
         </div> */}
         {/* Main/ Middle part of the homepage */}
-        <div
-          className="main-content"
-          sx={{ width: ['full', null, '3/4', null, '2/4'], }}
-        >
+        <div className="main-content" sx={{ width: ['full', null, '3/4', null, '2/4'] }}>
           {/* Featured Card */}
           {data.posts.nodes.length > 0 ? (
-            <div className='featured' sx={{
-              transition: 'all 0.5s',
-              '&:hover': { textDecoration: 'none', transform: 'scale(1.04)', },
-            }}>
+            <div
+              className="featured"
+              sx={{
+                transition: 'all 0.5s',
+                '&:hover': { textDecoration: 'none', transform: 'scale(1.04)' },
+              }}
+            >
               <StoryCard
-              cardStyle="featured"
-              storyData={data.posts.nodes[0]}
-              // imageSize="w-full h-64"
-              imageSize={{ width: 'full', height: 64 }}
-            />
+                cardStyle="featured"
+                storyData={data.posts.nodes[0]}
+                // imageSize="w-full h-64"
+                imageSize={{ width: 'full', height: 64 }}
+              />
             </div>
-
           ) : null}
 
           {/* Articles list */}
@@ -72,7 +71,7 @@ function Homepage({ data }) {
               py: (theme) => `${theme.space.spacing6}`,
             }}
           >
-            {data?.posts.nodes.slice(1, 20).map((item, index) => (
+            {data?.posts.nodes.slice(1, 20)?.map((item, index) => (
               <StoryCard
                 key={`homepage-post-${index}`}
                 cardStyle="card"
@@ -107,7 +106,7 @@ function Homepage({ data }) {
             >
               <h5 sx={{ fontSize: '1.25rem' }}>Recent In Factchecks</h5>
             </div>
-            {data?.factchecks.nodes.map((item, index) => (
+            {data?.factchecks.nodes?.map((item, index) => (
               <StoryCard
                 key={`homepage-factcheck-${index}`}
                 cardStyle="vertical"

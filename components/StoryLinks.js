@@ -43,7 +43,7 @@ const StoryLinks = ({ post, postActiveIndex, categories = true, index }) => {
                 my: 1,
               }}
             >
-              {post.categories.map((category, i, arr) => {
+              {post.categories?.map((category, i, arr) => {
                 return category.name + (arr.length - i > 1 ? ', ' : '');
               })}
             </p>

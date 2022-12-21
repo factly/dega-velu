@@ -73,7 +73,7 @@ function UserDetailsAll({ data }) {
 
         <div sx={{ display: 'flex', justifyContent: 'center' }}>
           {item.social_media_urls &&
-            Object.keys(item.social_media_urls).map((name) => (
+            Object.keys(item.social_media_urls)?.map((name) => (
               <a
                 key={name}
                 title={name}

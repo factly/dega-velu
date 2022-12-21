@@ -79,7 +79,7 @@ const StoryCard = ({
                   px: (theme) => `${theme.space.spacing2}`,
                 }}
               >
-                {storyData.categories.map((category, i, arr) => (
+                {storyData.categories?.map((category, i, arr) => (
                   <span key={i}>
                     {category.name}
                     {arr.length - i > 1 && ', '}
@@ -133,7 +133,7 @@ const StoryCard = ({
                         textTransform: 'none',
                       }}
                     >
-                      {storyData.users.map((user, i, arr) => (
+                      {storyData.users?.map((user, i, arr) => (
                         <span key={i}>
                           {`${user.first_name} ${user.last_name}`} {arr.length - i > 1 && ','}
                         </span>

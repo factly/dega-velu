@@ -119,7 +119,7 @@ const About = () => {
           }}
         >
           <div sx={{ display: 'block', position: 'sticky', mt: '60px' }}>
-            {menuItems.map((item, index) => (
+            {menuItems?.map((item, index) => (
               <article
                 key={index}
                 sx={{
@@ -458,7 +458,7 @@ const About = () => {
                     my: (theme) => `${theme.space.spacing5}`,
                   }}
                 >
-                  {informationTools.map((tool) => (
+                  {informationTools?.map((tool) => (
                     <div
                       key={tool.name}
                       sx={{
