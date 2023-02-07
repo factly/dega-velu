@@ -1,4 +1,3 @@
-import axios from "axios";
 import { getServerSideSitemap } from "next-sitemap";
 import { client } from 'store/client';
 import gql from 'graphql-tag';
