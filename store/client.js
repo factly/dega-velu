@@ -1,4 +1,3 @@
-
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import 'isomorphic-unfetch';
 import getConfig from 'next/config';
