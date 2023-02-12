@@ -136,7 +136,7 @@ const Post = ({ post, observer }) => {
                 )}
 
                 <div className="parsed">
-                  {process.browser && parseTiptapContent(post.description_html)}
+                  {process.browser && parseTiptapContent(claim.description_html)}
                 </div>
               </React.Fragment>
             ))}
