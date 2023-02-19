@@ -23,7 +23,7 @@ export default function PostDetails({ post, posts }) {
   // const [relatedPosts, setRelatedPosts] = React.useState(posts.slice(0, 10));
   // const [hasNextPageRelatedPost, setHasNextPageRelatedPost] = React.useState(true);
   const [observer, setObserver] = React.useState({
-    observe: () => {},
+    observe: () => { },
   });
   // const handleLoadMore = () => {
   //   if (!hasNextPage) return false;
@@ -87,7 +87,7 @@ export default function PostDetails({ post, posts }) {
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={post.medium.url.proxy} />
+        <meta property="og:image" content={post.medium?.url?.proxy} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
         {post.schemas &&
@@ -230,7 +230,7 @@ export default function PostDetails({ post, posts }) {
                   <Link href={`/${p.slug}`}>
                     <a sx={{ display: 'flex', cursor: 'pointer' }}>
                       <div sx={{ flex: '0 0 33%' }}>
-                        <img src={p.medium.url.proxy} alt="" />
+                        <img src={p?.medium?.url?.proxy} alt="" />
                       </div>
                       <div sx={{ flex: '0 0 67%', pl: '1rem' }}>
                         <h5>{p.title}</h5>
