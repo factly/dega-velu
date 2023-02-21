@@ -2,22 +2,22 @@ import gql from 'graphql-tag';
 import { client } from 'store/client';
 import getConfig from 'next/config';
 
-function generateSiteMap(users) {
+function generateSiteMap(posts) {
   const { publicRuntimeConfig } = getConfig();
 
   return `<?xml version="1.0" encoding="UTF-8"?>
   <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <!--We manually set the two URLs we know already-->
-     ${users
-      ?.map((user) => {
+     ${posts
+      .map((post) => {
         return `
-        <url>
-        <loc>${`${publicRuntimeConfig.siteURL}/user${user?.slug}/`}</loc>
-        <lastmod>${user?.updated_at}</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
+  <url>
+      <loc>${`${publicRuntimeConfig.siteURL}/${post?.slug}/`}</loc>
+      <lastmod>${post?.updated_at}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+  </url>
 
      `;
       })
@@ -26,17 +26,17 @@ function generateSiteMap(users) {
  `;
 }
 
-function SiteMapUser() {
+function SiteMapPost() {
   // getServerSideProps will do the heavy lifting
 }
 
-export async function getServerSideProps({ res }) {
-  // We make an API call to gather the URLs for our site
+export async function getServerSideProps({ params, res }) {
+
   const { data } = await client.query({
     query: gql`
       query SitemapQuery {
         sitemap {
-          users {
+          posts {
             slug
             id
             created_at
@@ -48,8 +48,15 @@ export async function getServerSideProps({ res }) {
     `,
   });
 
+  if (!data || (Math.ceil(data.sitemap.posts.length / 1000) < params.page)) {
+    return {
+      notFound: true,
+    }
+  }
 
-  const sitemap = await generateSiteMap(data.sitemap.users);
+  const start = (params.page - 1) * 1000;
+  const end = Math.ceil(data.sitemap.posts.length / 1000) == params.page ? data.sitemap.posts.length : params.page * 1000;
+  const sitemap = await generateSiteMap([...data.sitemap.posts].reverse().slice(start, end));
 
   res.setHeader('Content-Type', 'text/xml');
   // we send the XML to the browser
@@ -61,4 +68,4 @@ export async function getServerSideProps({ res }) {
   };
 }
 
-export default SiteMapUser;
+export default SiteMapPost;

@@ -2,19 +2,19 @@ import gql from 'graphql-tag';
 import { client } from 'store/client';
 import getConfig from 'next/config';
 
-function generateSiteMap(posts) {
+function generateSiteMap(categories) {
   const { publicRuntimeConfig } = getConfig();
 
   return `<?xml version="1.0" encoding="UTF-8"?>
   <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <!--We manually set the two URLs we know already-->
-     ${posts
-      .map((post) => {
+     ${categories
+      .map((category) => {
         return `
   <url>
-      <loc>${`${publicRuntimeConfig.siteURL}/${post?.slug}/`}</loc>
-      <lastmod>${post?.updated_at}</lastmod>
+      <loc>${`${publicRuntimeConfig.siteURL}/category/${category?.slug}/`}</loc>
+      <lastmod>${category?.updated_at}</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
   </url>
@@ -26,17 +26,17 @@ function generateSiteMap(posts) {
  `;
 }
 
-function SiteMapPost() {
+function SiteMapCategory() {
   // getServerSideProps will do the heavy lifting
 }
 
-export async function getServerSideProps({ res }) {
-  // We make an API call to gather the URLs for our site
+export async function getServerSideProps({ params, res }) {
+
   const { data } = await client.query({
     query: gql`
       query SitemapQuery {
         sitemap {
-          posts {
+          categories {
             slug
             id
             created_at
@@ -47,18 +47,26 @@ export async function getServerSideProps({ res }) {
       }
     `,
   });
+  console.log(data)
 
-  const sitemap = await generateSiteMap(data.sitemap.posts);
+  if (!data || (Math.ceil(data.sitemap.categories.length / 1000) < params.page)) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const start = (params.page - 1) * 1000;
+  const end = Math.ceil(data.sitemap.categories.length / 1000) == params.page ? data.sitemap.categories.length : params.page * 1000;
+  const sitemap = await generateSiteMap([...data.sitemap.categories].reverse().slice(start, end));
 
   res.setHeader('Content-Type', 'text/xml');
   // we send the XML to the browser
   res.write(sitemap);
   res.end();
 
-
   return {
     props: {},
   };
 }
 
-export default SiteMapPost;
+export default SiteMapCategory;
