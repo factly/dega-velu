@@ -1,5 +1,4 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+"use client"
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { FaFacebookSquare, FaTwitterSquare, FaWhatsappSquare } from 'react-icons/fa';
 import { jsx } from 'theme-ui';

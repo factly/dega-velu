@@ -9,7 +9,8 @@ import { client } from 'store/client';
 import Head from 'next/head';
 import parseTiptapContent from 'src/utils/parseTiptapEditorData';
 
-function CategoryDetailsAll({ data }) {
+export default async function Category({ }) {
+  const data = await getData();
   //  const { dega } = data;
   // const formatType = 'fact-check';
   // const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
@@ -84,9 +85,8 @@ function CategoryDetailsAll({ data }) {
   );
 }
 
-export default CategoryDetailsAll;
 
-export async function getServerSideProps({ params }) {
+export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`
       query ($slug: String!) {
@@ -145,15 +145,15 @@ export async function getServerSideProps({ params }) {
     },
   });
 
-  if (!data || !data.category) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!data || !data.category) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
-  return {
-    props: {
-      data,
-    },
-  };
+  // return {
+  //   props: {
+  //     data,
+  //   },
+  // };
 }

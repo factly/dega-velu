@@ -1,5 +1,4 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+"use client"
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
@@ -29,7 +28,7 @@ const Excerpt = ({ excerpt, image }) => (
             height: 'full',
             objectFit: 'cover',
           }}
-          // onError={addDefaultSrc}
+        // onError={addDefaultSrc}
         />
       </div>
     )}

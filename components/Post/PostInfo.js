@@ -1,5 +1,6 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+
+'use client'
+
 import React from 'react'; // eslint-disable-line no-unused-vars
 
 import { jsx } from 'theme-ui';
@@ -35,22 +36,19 @@ const PostInfo = ({ users, categories, date }) => (
         {users &&
           users?.map((user, i, arr) => (
             <React.Fragment key={i}>
-              <Link passHref href={`/author/${user.id}`}>
-                <a
-                  sx={{
-                    fontWeight: 'medium',
-                    color: (theme) => `${theme.colors.textLinkPrimary}`,
-                    fontSize: (theme) => `${theme.fontSizes.h7}`,
-                    px: (theme) => `${theme.space.spacing2}`,
-                    '&:first-of-type': { pl: 0 },
-                    '&:hover': {
-                      color: (theme) => `${theme.colors.textLinkHoverPrimary}`,
-                    },
-                  }}
-                >
-                  {' '}
-                  {`${user?.first_name} ${user?.last_name}`}
-                </a>
+              <Link sx={{
+                fontWeight: 'medium',
+                color: (theme) => `${theme.colors.textLinkPrimary}`,
+                fontSize: (theme) => `${theme.fontSizes.h7}`,
+                px: (theme) => `${theme.space.spacing2}`,
+                '&:first-of-type': { pl: 0 },
+                '&:hover': {
+                  color: (theme) => `${theme.colors.textLinkHoverPrimary}`,
+                },
+              }}
+                passHref href={`/author/${user.id}`}>
+                {' '}
+                {`${user?.first_name} ${user?.last_name}`}
               </Link>
               {arr.length - i > 1 && (user?.first_name || user?.last_name) && ','}
             </React.Fragment>
@@ -68,21 +66,18 @@ const PostInfo = ({ users, categories, date }) => (
             </span>
             {categories?.map((category, i, arr) => (
               <React.Fragment key={i}>
-                <Link passHref href={`/category/${category.slug}`}>
-                  <a
-                    sx={{
-                      px: (theme) => `${theme.space.spacing2}`,
-                      fontWeight: 'medium',
-                      color: (theme) => `${theme.colors.textLinkPrimary}`,
-                      fontSize: (theme) => `${theme.fontSizes.h7}`,
-                      '&:hover': {
-                        color: (theme) => `${theme.colors.textLinkHoverPrimary}`,
-                      },
-                    }}
-                  >
-                    {' '}
-                    {category.name}
-                  </a>
+                <Link sx={{
+                  px: (theme) => `${theme.space.spacing2}`,
+                  fontWeight: 'medium',
+                  color: (theme) => `${theme.colors.textLinkPrimary}`,
+                  fontSize: (theme) => `${theme.fontSizes.h7}`,
+                  '&:hover': {
+                    color: (theme) => `${theme.colors.textLinkHoverPrimary}`,
+                  },
+                }}
+                  passHref href={`/category/${category.slug}`}>
+                  {' '}
+                  {category.name}
                 </Link>
                 {arr.length - i > 1 && ', '}
               </React.Fragment>

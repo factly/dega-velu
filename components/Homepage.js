@@ -1,5 +1,5 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+'use client'
+
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
 // import Seo from './Seo';

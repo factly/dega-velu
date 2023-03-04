@@ -1,5 +1,6 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+
+'use client'
+
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
 import Link from 'next/link';
@@ -22,24 +23,21 @@ const Categories = ({ categories }) => {
           borderColor: (theme) => `${theme.colors.borderPrimary}`,
         }}
       >
-        <Link passHref href={`/category/${category.slug}`}>
-          <a
-            sx={{
-              width: 'full',
-              display: 'flex',
-              textDecoration: 'none',
-              '&:hover': { textDecoration: 'none' },
-              fontWeight: 'bold',
-              fontSize: (theme) => `${theme.fontSizes.h7}`,
-              color: (theme) => `${theme.colors.textPrimary}`,
-              '&:hover': {
-                color: (theme) => `${theme.colors.textLinkHoverPrimary}`,
-              },
-            }}
-          >
-            {' '}
-            {category.name}
-          </a>
+        <Link sx={{
+          width: 'full',
+          display: 'flex',
+          textDecoration: 'none',
+          '&:hover': { textDecoration: 'none' },
+          fontWeight: 'bold',
+          fontSize: (theme) => `${theme.fontSizes.h7}`,
+          color: (theme) => `${theme.colors.textPrimary}`,
+          '&:hover': {
+            color: (theme) => `${theme.colors.textLinkHoverPrimary}`,
+          },
+        }} passHref href={`/category/${category.slug}`}>
+
+          {' '}
+          {category.name}
         </Link>
       </div>
     ));

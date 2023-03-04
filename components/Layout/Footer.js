@@ -1,5 +1,4 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
 

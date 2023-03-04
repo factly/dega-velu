@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/** @jsx jsx */
-/** @jsxRuntime classic */
+"use client"
 import React, { useEffect, useRef, useState } from 'react'; // eslint-disable-line no-unused-vars
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { jsx } from 'theme-ui';
@@ -44,7 +43,7 @@ function FactCheckWidget({ claims }) {
 
     const maxScroll = Math.round(
       sliderElement.current.children[1].getBoundingClientRect().x -
-        sliderElement.current.firstElementChild.getBoundingClientRect().x,
+      sliderElement.current.firstElementChild.getBoundingClientRect().x,
     );
     setScrollWidth(maxScroll);
   }, []);

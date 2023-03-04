@@ -16,8 +16,9 @@ import FormatPageLayout from 'components/FormatPageLayout';
 import { client } from 'store/client';
 import Head from 'next/head';
 
-function UserDetailsFormat({ data }) {
+export default async function UserDetailsFormat({ params }) {
   //const { dega } = data;
+  const data = await getData({ params });
   const getIcon = (name) => {
     switch (name) {
       case 'twitter':
@@ -108,9 +109,8 @@ function UserDetailsFormat({ data }) {
   );
 }
 
-export default UserDetailsFormat;
 
-export async function getServerSideProps({ params }) {
+export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`
       query ($id: Int!, $formatSlug: String!) {
@@ -171,15 +171,15 @@ export async function getServerSideProps({ params }) {
     },
   });
 
-  if (!data || !data.user) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!data || !data.user) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
-  return {
-    props: {
-      data,
-    },
-  };
+  // return {
+  //   props: {
+  //     data,
+  //   },
+  // };
 }

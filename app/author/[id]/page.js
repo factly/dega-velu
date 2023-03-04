@@ -1,5 +1,4 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
 import {
@@ -16,8 +15,9 @@ import gql from 'graphql-tag';
 import { client } from 'store/client';
 import Head from 'next/head';
 
-function UserDetailsAll({ data }) {
-  const { dega } = data;
+export default async function UserDetailsAll({ params }) {
+  const data = await getData({ params });
+  // const { dega } = data;
   const getIcon = (name) => {
     switch (name) {
       case 'twitter':
@@ -39,59 +39,62 @@ function UserDetailsAll({ data }) {
     ? `${data.user.display_name}`
     : `${data.user.first_name} ${data.user.last_name}`;
 
-  const header = (item) => {
-    return (
-      <div sx={{ mb: (theme) => `${theme.space.spacing5}` }}>
-        {item.medium && (
-          <img
-            src={item.medium?.url.proxy}
-            alt=""
-            sx={{
-              borderRadius: '50%',
-              width: 40,
-              height: 40,
-              mx: 'auto',
-              padding: (theme) => `${theme.space.spacing8}`,
-            }}
-          />
-        )}
-        <h1
-          sx={{
-            textAlign: 'center',
-            fontSize: (theme) => `${theme.fontSizes.h4}`,
-            mb: (theme) => `${theme.space.spacing5}`,
-            textTransform: 'capitalize',
-          }}
-        >
-          {name}
-        </h1>
-        {item.description && (
-          <p sx={{ textAlign: 'center', pb: (theme) => `${theme.space.spacing5}` }}>
-            {item.description}
-          </p>
-        )}
+  // const header = (item) => {
+  //   return (
+  //     <div //sx={{ mb: (theme) => `${theme.space.spacing5}` }}
+  //     >
+  //       {item.medium && (
+  //         <img
+  //           src={item.medium?.url.proxy}
+  //           alt=""
+  //           sx={{
+  //             borderRadius: '50%',
+  //             width: 40,
+  //             height: 40,
+  //             mx: 'auto',
+  //             //    padding: (theme) => `${theme.space.spacing8}`,
+  //           }}
+  //         />
+  //       )}
+  //       <h1
+  //         sx={{
+  //           textAlign: 'center',
+  //           // fontSize: (theme) => `${theme.fontSizes.h4}`,
+  //           // mb: (theme) => `${theme.space.spacing5}`,
+  //           textTransform: 'capitalize',
+  //         }}
+  //       >
+  //         {name}
+  //       </h1>
+  //       {item.description && (
+  //         <p sx={{
+  //           textAlign: 'center',// pb: (theme) => `${theme.space.spacing5}` 
+  //         }}>
+  //           {item.description}
+  //         </p>
+  //       )}
 
-        <div sx={{ display: 'flex', justifyContent: 'center' }}>
-          {item.social_media_urls &&
-            Object.keys(item.social_media_urls)?.map((name) => (
-              <a
-                key={name}
-                title={name}
-                href={item.social_media_urls[name]}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ mr: (theme) => `${theme.space.spacing3}` }}
-              >
-                {getIcon(name)}
-              </a>
-            ))}
-          <a href={`mailto:${item.email}`} title="email">
-            {getIcon('email')}
-          </a>
-        </div>
-      </div>
-    );
-  };
+  //       <div sx={{ display: 'flex', justifyContent: 'center' }}>
+  //         {item.social_media_urls &&
+  //           Object.keys(item.social_media_urls)?.map((name) => (
+  //             <a
+  //               key={name}
+  //               title={name}
+  //               href={item.social_media_urls[name]}
+  //               target="_blank"
+  //               rel="noopener noreferrer"
+  //             // sx={{ mr: (theme) => `${theme.space.spacing3}` }}
+  //             >
+  //               {getIcon(name)}
+  //             </a>
+  //           ))}
+  //         <a href={`mailto:${item.email}`} title="email">
+  //           {getIcon('email')}
+  //         </a>
+  //       </div>
+  //     </div>
+  //   );
+  // };
   return (
     <>
       <Head>
@@ -102,16 +105,15 @@ function UserDetailsAll({ data }) {
         posts={data.posts.nodes}
         formats={data.formats.nodes}
         item={data.user}
-        header={header}
+        //   header={header}
         useSlug={false}
       />
     </>
   );
 }
 
-export default UserDetailsAll;
 
-export async function getServerSideProps({ params }) {
+export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`
       query ($id: Int!) {
@@ -170,16 +172,17 @@ export async function getServerSideProps({ params }) {
       id: params.id,
     },
   });
+  return data
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!data) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
-  return {
-    props: {
-      data,
-    },
-  };
+  // return {
+  //   props: {
+  //     data,
+  //   },
+  // };
 }

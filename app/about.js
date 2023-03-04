@@ -61,7 +61,7 @@ const informationTools = [
     desc: 'Parlens is a tool for searching data that is indexed from Indian parliament datasets.',
   },
 ];
-const Heading = () => {};
+const Heading = () => { };
 const About = () => {
   const [postActiveIndex, setPostActiveIndex] = useState('background');
 
@@ -130,23 +130,21 @@ const About = () => {
                   px: (theme) => `${theme.space.spacing6}`,
                 }}
               >
-                <Link passHref href={item.slug}>
-                  <a sx={{ textDecoration: 'none', '&:hover': { opacity: '0.75' } }}>
-                    <div sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}>
-                      <div
-                        id={`nav-${index}`}
-                        className={` ${postActiveIndex === index && 'active'}`}
-                        sx={{
-                          width: 'full',
-                          fontWeight: 'bold',
-                          fontSize: (theme) => `${theme.fontSizes.h7}`,
-                          color: (theme) => `${theme.colors.textPrimary}`,
-                        }}
-                      >
-                        {item.title}
-                      </div>
+                <Link sx={{ textDecoration: 'none', '&:hover': { opacity: '0.75' } }} passHref href={item.slug}>
+                  <div sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}>
+                    <div
+                      id={`nav-${index}`}
+                      className={` ${postActiveIndex === index && 'active'}`}
+                      sx={{
+                        width: 'full',
+                        fontWeight: 'bold',
+                        fontSize: (theme) => `${theme.fontSizes.h7}`,
+                        color: (theme) => `${theme.colors.textPrimary}`,
+                      }}
+                    >
+                      {item.title}
                     </div>
-                  </a>
+                  </div>
                 </Link>
               </article>
             ))}

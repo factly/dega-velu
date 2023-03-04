@@ -1,5 +1,4 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+"use client"
 import React, { useRef, useEffect, createRef } from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
 import PostInfo from './PostInfo';
@@ -14,13 +13,13 @@ import parseTiptapContent from 'src/utils/parseTiptapEditorData';
  * TODO: Add backgroudn to embeds if failed like factly.in
  */
 
-const Post = ({ post, observer }) => {
+const Post = ({ post, observer = () => { } }) => {
   const postSection = useRef(null);
   const headerSocialIcon = createRef();
 
   useEffect(() => {
-    observer.observe(postSection.current);
-    observer.observe(headerSocialIcon.current);
+    // observer.observe(postSection.current);
+    // observer.observe(headerSocialIcon.current);
   }, [observer, postSection, headerSocialIcon]);
 
   return (
@@ -75,13 +74,13 @@ const Post = ({ post, observer }) => {
             }}
           >
             <PostInfo date={post.published_date} users={post.users} categories={post.categories} />
-            <ShareButtonGroup
+            {/* <ShareButtonGroup
               setRef={headerSocialIcon}
               data={{
                 url: encodeURIComponent(process.browser ? window.location.href : null),
                 title: encodeURIComponent(post.title),
               }}
-            />
+            /> */}
           </div>
         </div>
         <Excerpt excerpt={post.excerpt} image={post.medium} />
