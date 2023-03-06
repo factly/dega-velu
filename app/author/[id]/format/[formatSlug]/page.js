@@ -1,9 +1,8 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 import gql from 'graphql-tag';
-import { jsx } from 'theme-ui';
+// import { jsx } from 'theme-ui';
 import {
   FaEnvelope,
   FaFacebookSquare,
@@ -40,58 +39,62 @@ export default async function UserDetailsFormat({ params }) {
     ? `${data.user.display_name}`
     : `${data.user.first_name} ${data.user.last_name}`;
 
-  const header = (item) => {
-    return (
-      <div sx={{ mb: (theme) => `${theme.space.spacing5}` }}>
-        {item.medium && (
-          <img
-            src={item.medium?.url.proxy}
-            alt=""
-            sx={{
-              borderRadius: '50%',
-              width: 40,
-              height: 40,
-              mx: 'auto',
-              padding: (theme) => `${theme.space.spacing8}`,
-            }}
-          />
-        )}
-        <h1
-          sx={{
-            textAlign: 'center',
-            fontSize: (theme) => `${theme.fontSizes.h4}`,
-            mb: (theme) => `${theme.space.spacing5}`,
-            textTransform: 'capitalize',
-          }}
-        >
-          {name}
-        </h1>
-        {item.description && (
-          <p sx={{ textAlign: 'center', pb: (theme) => `${theme.space.spacing5}` }}>
-            {item.description}
-          </p>
-        )}
-        <div sx={{ display: 'flex', justifyContent: 'center' }}>
-          {item.social_media_urls &&
-            Object.keys(item.social_media_urls)?.map((name) => (
-              <a
-                key={name}
-                title={name}
-                href={item.social_media_urls[name]}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ mr: (theme) => `${theme.space.spacing3}` }}
-              >
-                {getIcon(name)}
-              </a>
-            ))}
-          <a href={`mailto:${item.email}`} title="email">
-            {getIcon('email')}
-          </a>
-        </div>
-      </div>
-    );
-  };
+  // const header = (item) => {
+  //   return (
+  //     <div 
+  //     // sx={{ mb: (theme) => `${theme.space.spacing5}` }}
+  //     >
+  //       {item.medium && (
+  //         <img
+  //           src={item.medium?.url.proxy}
+  //           alt=""
+  //           sx={{
+  //             borderRadius: '50%',
+  //             width: 40,
+  //             height: 40,
+  //             mx: 'auto',
+  //             // padding: (theme) => `${theme.space.spacing8}`,
+  //           }}
+  //         />
+  //       )}
+  //       <h1
+  //         sx={{
+  //           textAlign: 'center',
+  //           // fontSize: (theme) => `${theme.fontSizes.h4}`,
+  //           // mb: (theme) => `${theme.space.spacing5}`,
+  //           textTransform: 'capitalize',
+  //         }}
+  //       >
+  //         {name}
+  //       </h1>
+  //       {item.description && (
+  //         <p 
+  //         // sx={{ textAlign: 'center', pb: (theme) => `${theme.space.spacing5}` }}
+  //         >
+  //           {item.description}
+  //         </p>
+  //       )}
+  //       <div sx={{ display: 'flex', justifyContent: 'center' }}>
+  //         {item.social_media_urls &&
+  //           Object.keys(item.social_media_urls)?.map((name) => (
+  //             <a
+  //               key={name}
+  //               title={name}
+  //               href={item.social_media_urls[name]}
+  //               target="_blank"
+  //               rel="noopener noreferrer"
+  //               // sx={{ mr: (theme) => `${theme.space.spacing3}` }}
+  //             >
+  //               {getIcon(name)}
+  //             </a>
+  //           ))}
+  //         <a href={`mailto:${item.email}`} title="email">
+  //           {getIcon('email')}
+  //         </a>
+  //       </div>
+  //     </div>
+  //   );
+  // };
   return (
     <>
       <Head>
@@ -102,7 +105,7 @@ export default async function UserDetailsFormat({ params }) {
         posts={data.posts.nodes}
         formats={data.formats.nodes}
         item={data.user}
-        header={header}
+        // header={header}
         useSlug={false}
       />
     </>
@@ -171,6 +174,7 @@ export async function getData({ params }) {
     },
   });
 
+  return data
   // if (!data || !data.user) {
   //   return {
   //     notFound: true,

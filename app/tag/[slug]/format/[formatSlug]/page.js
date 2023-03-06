@@ -1,5 +1,5 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+
+"use client"
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 import gql from 'graphql-tag';
@@ -16,32 +16,33 @@ import { client } from 'store/client';
 import FormatPageLayout from 'components/FormatPageLayout';
 import Head from 'next/head';
 
-function TagDetailsAll({ data }) {
+export default async function TagDetailsAll({ params }) {
+  const data = await getData({params})
   //  const { dega } = data;
   // const formatType = 'fact-check';
   // const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
 
-  const header = (item) => {
-    return (
-      <div
-        sx={{
-          mb: (theme) => `${theme.space.spacing6}`,
-          fontSize: (theme) => `${theme.fontSizes.h6}`,
-        }}
-      >
-        <h1
-          sx={{
-            textAlign: 'center',
-            fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
-            mb: (theme) => `${theme.space.spacing5}`,
-            textTransform: 'capitalize',
-          }}
-        >
-          {item.name}
-        </h1>
-      </div>
-    );
-  };
+  // const header = (item) => {
+  //   return (
+  //     <div
+  //       sx={{
+  //         mb: (theme) => `${theme.space.spacing6}`,
+  //         fontSize: (theme) => `${theme.fontSizes.h6}`,
+  //       }}
+  //     >
+  //       <h1
+  //         sx={{
+  //           textAlign: 'center',
+  //           fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
+  //           mb: (theme) => `${theme.space.spacing5}`,
+  //           textTransform: 'capitalize',
+  //         }}
+  //       >
+  //         {item.name}
+  //       </h1>
+  //     </div>
+  //   );
+  // };
   return (
     <>
       <Head>
@@ -52,15 +53,13 @@ function TagDetailsAll({ data }) {
         posts={data.posts.nodes}
         formats={data.formats.nodes}
         item={data.tag}
-        header={header}
+        // header={header}
       />
     </>
   );
 }
 
-export default TagDetailsAll;
-
-export async function getServerSideProps({ params }) {
+export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`
       query ($slug: String!, $formatSlug: String!) {
@@ -119,15 +118,16 @@ export async function getServerSideProps({ params }) {
     },
   });
 
-  if (!data || !data.tag) {
-    return {
-      notFound: true,
-    };
-  }
+  return data;
+  // if (!data || !data.tag) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
-  return {
-    props: {
-      data,
-    },
-  };
+  // return {
+  //   props: {
+  //     data,
+  //   },
+  // };
 }

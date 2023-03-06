@@ -1,6 +1,8 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
-import React, { useState, useEffect } from 'react'; // eslint-disable-line no-unused-vars
+
+// eslint-disable-line no-unused-vars
+
+"use client"
+
 import { jsx } from 'theme-ui';
 import gql from 'graphql-tag';
 import parseEditorJsData from 'src/utils/parseEditorJsData';
@@ -9,7 +11,8 @@ import FormatPageLayout from 'components/FormatPageLayout';
 import { client } from 'store/client';
 import Head from 'next/head';
 
-function TagDetailsAll({ data }) {
+export async function TagDetailsAll({ params }) {
+  const data = await getData({params});
   //  const { dega } = data;
   // const formatType = 'fact-check';
   // const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
@@ -51,9 +54,8 @@ function TagDetailsAll({ data }) {
   );
 }
 
-export default TagDetailsAll;
 
-export async function getServerSideProps({ params }) {
+export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`
       query ($slug: String!) {
@@ -106,11 +108,11 @@ export async function getServerSideProps({ params }) {
     },
   });
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!data) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
   return {
     props: {

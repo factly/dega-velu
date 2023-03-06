@@ -1,15 +1,14 @@
-"use client"
+ // eslint-disable-line no-unused-vars
 
-// import React, { useState, useEffect } from 'react'; // eslint-disable-line no-unused-vars
-import { jsx } from 'theme-ui';
+
+// import { jsx } from 'theme-ui';
 import gql from 'graphql-tag';
-import parseEditorJsData from 'src/utils/parseEditorJsData';
-import FormatPageLayout from 'components/FormatPageLayout';
-import { client } from 'store/client';
 import Head from 'next/head';
-import parseTiptapContent from 'src/utils/parseTiptapEditorData';
+import FormatPageLayout from 'components/FormatPageLayout';
+import parseEditorJsData from 'src/utils/parseEditorJsData';
+import { client } from 'store/client';
 
-export default async function Category({params }) {
+export default async function CategoryDetailsAll({ params }) {
   const data = await getData({params});
   //  const { dega } = data;
   // const formatType = 'fact-check';
@@ -25,50 +24,50 @@ export default async function Category({params }) {
   //   }
   // }, []);
 
-  const header = (item) => {
-    return (
-      <div
-        sx={{
-          mb: (theme) => `${theme.space.spacing6}`,
-          fontSize: (theme) => `${theme.fontSizes.h6}`,
-        }}
-      >
-        <h1
-          sx={{
-            textAlign: 'center',
-            fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
-            mb: (theme) => `${theme.space.spacing5}`,
-            textTransform: 'capitalize',
-          }}
-        >
-          {item.name}
-        </h1>
-        <div
-          id="category-description"
-          sx={{
-            maxHeight: (theme) => (readMore ? `calc(${theme.lineHeights.normal}em * 6 )` : '100%'),
-            overflow: 'hidden',
-            px: (theme) => `${theme.space.spacing5}`,
-          }}
-        >
-          {process.browser && parseTiptapContent(item.description_html)}
-        </div>
-        {item.description && isReadMoreNeeded && (
-          <button
-            type="button"
-            onClick={() => setReadMore((prev) => !prev)}
-            sx={{
-              px: (theme) => `${theme.space.spacing5}`,
-              color: (theme) => `${theme.colors.textLinkPrimary}`,
-              fontSize: (theme) => `${theme.fontSizes.h6}`,
-            }}
-          >
-            {readMore ? 'Read more' : 'Read less'}
-          </button>
-        )}
-      </div>
-    );
-  };
+  // const header = (item) => {
+  //   return (
+  //     <div
+  //       sx={{
+  //         mb: (theme) => `${theme.space.spacing6}`,
+  //         fontSize: (theme) => `${theme.fontSizes.h6}`,
+  //       }}
+  //     >
+  //       <h1
+  //         sx={{
+  //           textAlign: 'center',
+  //           fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
+  //           mb: (theme) => `${theme.space.spacing5}`,
+  //           textTransform: 'capitalize',
+  //         }}
+  //       >
+  //         {item.name} 
+  //       </h1>
+  //       <div
+  //         id="category-description"
+  //         sx={{
+  //           maxHeight: (theme) => (readMore ? `calc(${theme.lineHeights.normal}em * 6 )` : '100%'),
+  //           overflow: 'hidden',
+  //           px: (theme) => `${theme.space.spacing5}`,
+  //         }}
+  //       >
+  //         {parseEditorJsData({ content: item.description })}
+  //       </div>
+  //       {item.description && isReadMoreNeeded && (
+  //         <button
+  //           type="button"
+  //           onClick={() => setReadMore((prev) => !prev)}
+  //           sx={{
+  //             px: (theme) => `${theme.space.spacing5}`,
+  //             color: (theme) => `${theme.colors.textLinkPrimary}`,
+  //             fontSize: (theme) => `${theme.fontSizes.h6}`,
+  //           }}
+  //         >
+  //           {readMore ? 'Read more' : 'Read less'}
+  //         </button>
+  //       )}
+  //     </div>
+  //   );
+  // };
   return (
     <>
       <Head>
@@ -78,8 +77,8 @@ export default async function Category({params }) {
         type="category"
         posts={data.posts.nodes}
         formats={data.formats.nodes}
-        item={data.category}
-        header={header}
+        item={data.category} 
+        // header={header}
       />
     </>
   );
@@ -89,10 +88,9 @@ export default async function Category({params }) {
 export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`
-      query ($slug: String!) {
+      query ($slug: String!, $formatSlug: String!) {
         category(slug: $slug) {
           description
-          description_html
           id
           medium {
             alt_text
@@ -109,7 +107,7 @@ export async function getData({ params }) {
             name
           }
         }
-        posts(categories: { slugs: [$slug] }) {
+        posts(categories: { slugs: [$slug] }, formats: { slugs: [$formatSlug] }) {
           nodes {
             users {
               id
@@ -142,6 +140,7 @@ export async function getData({ params }) {
     `,
     variables: {
       slug: params.slug,
+      formatSlug: params.formatSlug,
     },
   });
 
@@ -158,3 +157,4 @@ export async function getData({ params }) {
   //   },
   // };
 }
+

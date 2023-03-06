@@ -1,13 +1,14 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
+
+
 import React from 'react';
 import gql from 'graphql-tag';
 import StoryCard from 'components/StoryCard';
 import { client } from 'store/client';
-import { jsx } from 'theme-ui';
+// import { jsx } from 'theme-ui';
 import Head from 'next/head';
 
-function FormatPage({ data }) {
+export default async function FormatPage({ params }) {
+  const data = await getData({params});
   const filteredPosts = data.posts.nodes.filter((post) => post.published_date !== null);
   return (
     <>
@@ -16,12 +17,12 @@ function FormatPage({ data }) {
       </Head>
       <div sx={{ mx: 'auto', maxWidth: 1560 }}>
         <h1
-          sx={{
-            mt: (theme) => `${theme.space.layout4}`,
-            mb: (theme) => `${theme.space.layout2}`,
-            textAlign: 'center',
-            fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
-          }}
+          // sx={{
+          //   mt: (theme) => `${theme.space.layout4}`,
+          //   mb: (theme) => `${theme.space.layout2}`,
+          //   textAlign: 'center',
+          //   fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
+          // }}
         >
           {filteredPosts[0]?.format.name}
         </h1>
@@ -29,8 +30,8 @@ function FormatPage({ data }) {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            pb: (theme) => `${theme.space.spacing6}`,
-            pt: [null, null, null, (theme) => `${theme.space.spacing7}`],
+            // pb: (theme) => `${theme.space.spacing6}`,
+            // pt: [null, null, null, (theme) => `${theme.space.spacing7}`],
           }}
         >
           {filteredPosts.length > 0 ? (
@@ -38,8 +39,8 @@ function FormatPage({ data }) {
               sx={{
                 display: 'grid',
                 gridTemplateColumns: ['1fr', null, 'repeat(2, 1fr)', 'repeat(3,1fr)'],
-                gridGap: (theme) => `${theme.space.spacing6}`,
-                px: [null, null, (theme) => `${theme.space.spacing6}`],
+                // gridGap: (theme) => `${theme.space.spacing6}`,
+                // px: [null, null, (theme) => `${theme.space.spacing6}`],
               }}
             >
               {filteredPosts?.map((item, index) => (
@@ -60,9 +61,8 @@ function FormatPage({ data }) {
     </>
   );
 }
-export default FormatPage;
 
-export async function getServerSideProps({ params }) {
+export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`
       query ($slug: String!) {
@@ -102,15 +102,18 @@ export async function getServerSideProps({ params }) {
     },
   });
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
 
-  return {
-    props: {
-      data,
-    },
-  };
+  return data
+
+  // if (!data) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
+
+  // return {
+  //   props: {
+  //     data,
+  //   },
+  // };
 }
