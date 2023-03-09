@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
         {space.fav_icon && <link rel="icon" href={`${space.fav_icon?.url?.proxy}`} />}
       </Seo> */}
       <Navbar />
-      <main
+      <main className='w-full text-xl md:text-2xl text-[#2d3748] leading-normal pt-4 mt-[60px] mx-auto flex flex-col justify-between'
         style={{ maxWidth: '1560px' }}
         sx={{
           width: 'full',

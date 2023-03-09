@@ -10,48 +10,17 @@ import FormatPageLayout from 'components/FormatPageLayout';
 
 import { client } from 'store/client';
 import Head from 'next/head';
+import TagDetailsComponent from './components/TagDetailsComponent';
 
 export async function TagDetailsAll({ params }) {
-  const data = await getData({params});
+  const data = await getData({ params });
   //  const { dega } = data;
   // const formatType = 'fact-check';
   // const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
 
-  const header = (item) => {
-    return (
-      <div
-        sx={{
-          mb: (theme) => `${theme.space.spacing6}`,
-          fontSize: (theme) => `${theme.fontSizes.h6}`,
-        }}
-      >
-        <h1
-          sx={{
-            textAlign: 'center',
-            fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
-            mb: (theme) => `${theme.space.spacing5}`,
-            textTransform: 'capitalize',
-          }}
-        >
-          {item.name}
-        </h1>
-      </div>
-    );
-  };
   return (
-    <>
-      <Head>
-        <title> {data.tag.name} </title>
-      </Head>
-      <FormatPageLayout
-        type="tag"
-        posts={data.posts.nodes}
-        formats={data.formats.nodes}
-        item={data.tag}
-        header={header}
-      />
-    </>
-  );
+    <TagDetailsComponent data={data} />
+  )
 }
 
 
@@ -108,15 +77,16 @@ export async function getData({ params }) {
     },
   });
 
+  return data;
   // if (!data) {
   //   return {
   //     notFound: true,
   //   };
   // }
 
-  return {
-    props: {
-      data,
-    },
-  };
+  // return {
+  //   props: {
+  //     data,
+  //   },
+  // };
 }

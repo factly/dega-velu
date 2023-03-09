@@ -59,27 +59,29 @@ function FactCheckWidget({ claims }) {
   },[sliderElement.current ]) */
 
   return (
-    <div
-      sx={{
-        width: ['full', null, null, '3/4'],
-        mx: 'auto',
-        fontSize: (theme) => `${theme.fontSizes.body}`,
-        mb: (theme) => `${theme.space.spacing5}`,
-      }}
+    <div className='w-full lg:w-[3/4] mx-auto text-base mb-4'
+    // sx={{
+    //   width: ['full', null, null, '3/4'],
+    //   mx: 'auto',
+    //   fontSize: (theme) => `${theme.fontSizes.body}`,
+    //   mb: (theme) => `${theme.space.spacing5}`,
+    // }}
     >
+
+
       {claims.length >= 1 && (
         <React.Fragment>
-          <div
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignContent: 'center',
-              justifyContent: 'space-between',
-              pt: (theme) => `${theme.space.spacing6}`,
-              pb: (theme) => `${theme.space.spacing3}`,
-            }}
+          <div className='flex flex-row justify-between content-center pt-6 pb-2'
+          // sx={{
+          //   display: 'flex',
+          //   flexDirection: 'row',
+          //   alignContent: 'center',
+          //   justifyContent: 'space-between',
+          //   pt: (theme) => `${theme.space.spacing6}`,
+          //   pb: (theme) => `${theme.space.spacing3}`,
+          // }}
           >
-            <button
+            <button className='border border-[#edf2f7] rounded text-left text-xl p-2 focus: outline-none'
               type="button"
               onClick={handlePrevClick}
               href-id="claim-1"
@@ -96,7 +98,8 @@ function FactCheckWidget({ claims }) {
                 opacity: disable.left ? 0.5 : null,
               }}
             >
-              <FaChevronLeft sx={{ fill: 'currentColor', width: 4, height: 4 }} />
+              <FaChevronLeft className=''
+                sx={{ fill: 'currentColor', width: 4, height: 4 }} />
             </button>
             <h2
               sx={{

@@ -1,14 +1,13 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import 'isomorphic-unfetch';
+//import 'isomorphic-unfetch';
 import getConfig from 'next/config';
 
-const { publicRuntimeConfig } = getConfig();
 
 export const client = new ApolloClient({
-  uri: publicRuntimeConfig.apiUrl,
+  uri: 'https://stag-dega-api.factly.in/query',
   headers: {
-    'X-Dega-API-Key': publicRuntimeConfig.degaAPIKey,
-    'X-Space': parseInt(publicRuntimeConfig.spaceId),
+    'X-Dega-API-Key': process.env.DEGA_API_KEY,
+    'X-Space': parseInt(process.env.SPACE_ID),
   },
   cache: new InMemoryCache(),
 });
