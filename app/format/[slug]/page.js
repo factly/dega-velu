@@ -2,7 +2,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { client } from 'store/client';
-import FormatDetailsComponent from './components/FormatDetailsComponent';
+import FormatDetailsComponent from './Components/FormatDetailsComponent';
 
 export default async function FormatPage({ params }) {
   const data = await getData({ params });

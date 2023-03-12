@@ -14,7 +14,7 @@ export default async function FormatDetailsComponent({ data }) {
       <Head>
         <title> {filteredPosts[0]?.format.name} </title>
       </Head>
-      <div className='mx-auto max-w-[1560]'
+      <div className='mx-auto max-w-[1560px]'
       // sx={{ mx: 'auto', maxWidth: 1560 }}
       >
         <h1 className='mt-12 mb-6 text-center text-2xl sm:text-[2rem]'
@@ -36,7 +36,7 @@ export default async function FormatDetailsComponent({ data }) {
         // }}
         >
           {filteredPosts.length > 0 ? (
-            <div className='grid gap-6 px-6 grid-cols-[1fr] md:grid-cols-[repeat(2, 1fr) lg:repeat(3,1fr)] '
+            <div className='grid gap-6 px-6 md:grid-cols-2 lg:grid-cols-3	 '
             // sx={{
             //   display: 'grid',
             //   gridTemplateColumns: ['1fr', null, 'repeat(2, 1fr)', 'repeat(3,1fr)'],

@@ -11,7 +11,7 @@ const FooterTwo = () => (
   // }}
   >
     <div
-      className="footer-header grid grid-cols-2 max-w-[1200px] mx-auto items-center p-8"
+      className="footer-header grid grid-cols-1 md:grid-cols-2 max-w-[1200px] mx-auto items-center p-8"
     // sx={{
     //   display: 'grid',
     //   gridTemplateColumns: ['1fr', null, '1fr 1fr'],

@@ -58,7 +58,7 @@ const Post = ({ post, observer = () => { } }) => {
         //   overflow: 'hidden',
         // }}
         >
-          <h1 className='font-bold text-[2rem] md:text-[2.5rem] py-2'
+          <h1 className='font-bold text-3xl md:text-[2.5rem] py-2 leading-tight'
           // sx={{
           //   fontWeight: 'bold',
           //   fontSize: (theme) => [`${theme.fontSizes.h4}`, null, `${theme.fontSizes.h3}`],

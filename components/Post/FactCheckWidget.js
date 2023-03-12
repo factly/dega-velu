@@ -81,95 +81,104 @@ function FactCheckWidget({ claims }) {
           //   pb: (theme) => `${theme.space.spacing3}`,
           // }}
           >
-            <button className='border border-[#edf2f7] rounded text-left text-xl p-2 focus: outline-none'
+            <button className={`${disable.left ? 'cursor-not-allowed' : 'cursor-pointer'} ${disable.left ? 'opacity[0.5]' : ""} border border-[#edf2f7] rounded text-left text-xl p-2 focus: outline-none`}
+
               type="button"
               onClick={handlePrevClick}
               href-id="claim-1"
               disabled={disable.left}
-              sx={{
-                borderWidth: '1px',
-                borderColor: (theme) => `${theme.colors.borderPrimary}`,
-                borderRadius: 'default',
-                textAlign: 'left',
-                fontSize: (theme) => `${theme.fontSizes.h6}`,
-                p: (theme) => `${theme.space.spacing3}`,
-                '&:focus': { outline: 'none' },
-                cursor: disable.left ? 'not-allowed' : 'pointer',
-                opacity: disable.left ? 0.5 : null,
-              }}
+            // sx={{
+            //   borderWidth: '1px',
+            //   borderColor: (theme) => `${theme.colors.borderPrimary}`,
+            //   borderRadius: 'default',
+            //   textAlign: 'left',
+            //   fontSize: (theme) => `${theme.fontSizes.h6}`,
+            //   p: (theme) => `${theme.space.spacing3}`,
+            //   '&:focus': { outline: 'none' },
+            //   cursor: disable.left ? 'not-allowed' : 'pointer',
+            //   opacity: disable.left ? 0.5 : null,
+            // }}
             >
-              <FaChevronLeft className=''
-                sx={{ fill: 'currentColor', width: 4, height: 4 }} />
+              <FaChevronLeft className='fill-current	w-4 h-4'
+              // sx={{ fill: 'currentColor', width: 4, height: 4 }} 
+
+              />
             </button>
-            <h2
-              sx={{
-                width: 'full',
-                py: (theme) => `${theme.space.spacing3}`,
-                textAlign: 'center',
-                fontFamily: (theme) => `${theme.fonts.metropolis}`,
-                textTransform: 'uppercase',
-                fontWeight: 'bold',
-              }}
+            <h2 className='w-full py-2 text-center uppercase font-bold font-[metropolis]'
+            // sx={{
+            //   width: 'full',
+            //   py: (theme) => `${theme.space.spacing3}`,
+            //   textAlign: 'center',
+            //   fontFamily: (theme) => `${theme.fonts.metropolis}`,
+            //   textTransform: 'uppercase',
+            //   fontWeight: 'bold',
+            // }}
             >
               List of claims
             </h2>
-            <button
+            <button className={`${disable.right ? 'cursor-not-allowed' : 'cursor-pointer'} ${disable.right ? 'opacity[0.5]' : ""} border border-[#edf2f7] rounded text-left text-xl p-2 focus: outline-none`}
+
               type="button"
               onClick={handleNextClick}
               href-id="claim-1"
               disabled={disable.right}
-              sx={{
-                borderWidth: '1px',
-                borderColor: (theme) => `${theme.colors.borderPrimary}`,
-                borderRadius: 'default',
-                textAlign: 'left',
-                fontSize: (theme) => `${theme.fontSizes.h6}`,
-                p: (theme) => `${theme.space.spacing3}`,
-                '&:focus': { outline: 'none' },
-                cursor: disable.right ? 'not-allowed' : 'pointer',
-                opacity: disable.right ? 0.5 : null,
-              }}
+            // sx={{
+            //   borderWidth: '1px',
+            //   borderColor: (theme) => `${theme.colors.borderPrimary}`,
+            //   borderRadius: 'default',
+            //   textAlign: 'left',
+            //   fontSize: (theme) => `${theme.fontSizes.h6}`,
+            //   p: (theme) => `${theme.space.spacing3}`,
+            //   '&:focus': { outline: 'none' },
+            //   cursor: disable.right ? 'not-allowed' : 'pointer',
+            //   opacity: disable.right ? 0.5 : null,
+            // }}
             >
-              <FaChevronRight sx={{ fill: 'currentColor', width: 4, height: 4 }} />
+              <FaChevronRight className='fill-current	w-4 h-4'
+              // sx={{ fill: 'currentColor', width: 4, height: 4 }} 
+
+              />
             </button>
           </div>
           <div
             ref={sliderElement}
-            className="sliderF"
-            sx={{ display: 'flex', overflowX: 'auto', pb: (theme) => `${theme.space.spacing6}` }}
+            className="sliderF flex overflow-x-auto pb-6"
+          // sx={{ display: 'flex', overflowX: 'auto', pb: (theme) => `${theme.space.spacing6}` }}
           >
             {claims?.map((claim, i) => (
-              <div
+              <div className='inline-block w-full flex-none snap-start mr-6'
                 id={`claim-${i}`}
                 key={i}
-                sx={{
-                  display: 'inline-block',
-                  flex: 'none',
-                  width: 'full',
-                  scrollSnapAlign: 'start',
-                  mr: (theme) => `${theme.space.spacing6}`,
-                }}
+              // sx={{
+              //   display: 'inline-block',
+              //   flex: 'none',
+              //   width: 'full',
+              //   scrollSnapAlign: 'start',
+              //   mr: (theme) => `${theme.space.spacing6}`,
+              // }}
               >
-                <div
-                  sx={{
-                    width: 'full',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    borderWidth: '1px',
-                    boxShadow: 'lg',
-                  }}
+                <div className='w-full flex flex-col border shadow-lg	'
+                // sx={{
+                //   width: 'full',
+                //   display: 'flex',
+                //   flexDirection: 'column',
+                //   borderWidth: '1px',
+                //   boxShadow: 'lg',
+                // }}
                 >
-                  <div
-                    sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                  <div className='flex justify-between items-center'
+                  // sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   >
-                    <div
-                      sx={{
-                        display: 'flex',
-                        p: (theme) => `${theme.space.spacing5}`,
-                        alignItems: 'baseline',
-                      }}
+                    <div className='flex items-baseline p-4'
+                    // sx={{
+                    //   display: 'flex',
+                    //   p: (theme) => `${theme.space.spacing5}`,
+                    //   alignItems: 'baseline',
+                    // }}
                     >
-                      <h2 sx={{ fontWeight: 'bold', mr: (theme) => `${theme.space.spacing3}` }}>
+                      <h2 className='font-bold mr-2'
+                      // sx={{ fontWeight: 'bold', mr: (theme) => `${theme.space.spacing3}` }}
+                      >
                         Claimant:{' '}
                       </h2>
                       {claim.claimant.name}
@@ -226,45 +235,51 @@ function FactCheckWidget({ claims }) {
                       </a>
                     </div> */}
                   </div>
-                  <div
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      p: (theme) => `${theme.space.spacing5}`,
-                      color: (theme) => `${theme.colors.textLight}`,
-                      bg: CLAIM_RATING[claim.rating.slug],
-                    }}
+                  <div className={`flex flex-col p-4 text-[#fff] bg-[${CLAIM_RATING[claim.rating.slug]}]`}
+                  // sx={{
+                  //   display: 'flex',
+                  //   flexDirection: 'column',
+                  //   p: (theme) => `${theme.space.spacing5}`,
+                  //   color: (theme) => `${theme.colors.textLight}`,
+                  //   bg: CLAIM_RATING[claim.rating.slug],
+                  // }}
                   >
-                    <h2 sx={{ fontWeight: 'bold', py: (theme) => `${theme.space.spacing3}` }}>
+                    <h2 className='font-bold py-2'
+                    // sx={{ fontWeight: 'bold', py: (theme) => `${theme.space.spacing3}` }}
+                    >
                       Claim:{' '}
                     </h2>
-                    <div className="parsed" sx={{ display: 'flex' }}>
+                    <div className="parsed flex"
+                    // sx={{ display: 'flex' }}
+                    >
                       {claim.claim}
                       {claim.rating.medium && (
-                        <img
+                        <img className='w-1/6 h-full m-2 rounded-tl	rounded-tr	 '
                           src={claim.rating.medium?.url.proxy}
                           alt={claim.rating.medium?.alt_text}
-                          //onError={addDefaultSrc}
-                          sx={{
-                            width: '1/6',
-                            height: 'full',
-                            m: (theme) => `${theme.space.spacing3}`,
-                            borderTopLeftRadius: 'default',
-                            borderTopRightRadius: 'default',
-                          }}
+                        //onError={addDefaultSrc}
+                        // sx={{
+                        //   width: '1/6',
+                        //   height: 'full',
+                        //   m: (theme) => `${theme.space.spacing3}`,
+                        //   borderTopLeftRadius: 'default',
+                        //   borderTopRightRadius: 'default',
+                        // }}
                         />
                       )}
                     </div>
                   </div>
-                  <div
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      p: (theme) => `${theme.space.spacing5}`,
-                      borderBottomWidth: '1px',
-                    }}
+                  <div className='flex flex-col border-b p-4'
+                  // sx={{
+                  //   display: 'flex',
+                  //   flexDirection: 'column',
+                  //   p: (theme) => `${theme.space.spacing5}`,
+                  //   borderBottomWidth: '1px',
+                  // }}
                   >
-                    <h2 sx={{ fontWeight: 'bold' }}>Fact: </h2>
+                    <h2 className='font-bold'
+                    // sx={{ fontWeight: 'bold' }}
+                    >Fact: </h2>
 
                     <div className="parsed">
                       <p dangerouslySetInnerHTML={{ __html: claim.fact }} />

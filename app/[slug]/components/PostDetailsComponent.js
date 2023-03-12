@@ -232,7 +232,7 @@ export default function PostDetailsComponent({ data }) {
             >
               {filteredPosts?.map((p) => (
                 <div
-                  className='p-6 text-left max-w-[50%] flex-[0_0_50%]'
+                  className='p-6 text-left md:max-w-[50%] md:flex-[0_0_50%]'
                   key={p.id}
                 // sx={{
                 //   flex: [null, null, '0 0 50%'],

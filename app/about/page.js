@@ -1,6 +1,5 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
-/* eslint-disable no-unused-vars */
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import { jsx } from 'theme-ui';
 // import Layout from '../components/Layout/index';
@@ -133,9 +132,9 @@ const About = () => {
               //   px: (theme) => `${theme.space.spacing6}`,
               // }}
               >
-                <Link className='no-underline hover:opacity-75'
+                <a className='no-underline hover:opacity-75'
                   // sx={{ textDecoration: 'none', '&:hover': { opacity: '0.75' } }} 
-                  passHref href={item.slug}>
+                  href={item.slug}>
                   <div className='w-full flex flex-col'
                   // sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}
                   >
@@ -152,7 +151,7 @@ const About = () => {
                       {item.title}
                     </div>
                   </div>
-                </Link>
+                </a>
               </article>
             ))}
           </div>
@@ -456,15 +455,15 @@ const About = () => {
                   visualization of Census-2011 data. Factly is currently working on other tools that
                   are in the development stage.
                 </p>
-                <div className='grid gap-4 grid-cols-[1fr] xl:grid-cols-[1fr 1fr] justify-around my-4'
-                  sx={{
-                    display: 'grid',
-                    gridTemplateColumns: ['1fr', null, null, null, '1fr 1fr'],
-                    gridGap: '1rem',
-                    // flexWrap: 'wrap',
-                    justifyContent: 'space-around',
-                    my: (theme) => `${theme.space.spacing5}`,
-                  }}
+                <div className='grid gap-4 lg:grid-cols-2 justify-around my-4'
+                // sx={{
+                //   display: 'grid',
+                //   gridTemplateColumns: ['1fr', null, null, null, '1fr 1fr'],
+                //   gridGap: '1rem',
+                //   // flexWrap: 'wrap',
+                //   justifyContent: 'space-around',
+                //   my: (theme) => `${theme.space.spacing5}`,
+                // }}
                 >
                   {informationTools?.map((tool) => (
                     <div className='flex flex-col mx-auto text-center my-6 max-w-[500]'

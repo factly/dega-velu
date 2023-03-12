@@ -6,93 +6,95 @@ import { jsx } from 'theme-ui';
 import StoryCard from './StoryCard';
 import Link from 'next/link';
 import ActiveLink from './ActiveLink';
+import Header from './../app/author/[id]/components/Header';
 
 const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }) => {
   const slug = useSlug ? item.slug : item.id;
   const filteredPosts = posts.filter((post) => post.published_date !== null);
   const defaultHeader = (item) => (
-    <h1
-      sx={{
-        textAlign: 'center',
-        fontSize: [(theme) => `${theme.fontSizes.h5}`, null, (theme) => `${theme.fontSizes.h4}`],
-        mb: (theme) => `${theme.space.spacing5}`,
-        textTransform: 'capitalize',
-      }}
+    <h1 className='text-center text-2xl md:text-[2rem] mb-4 capitalize'
+    // sx={{
+    //   textAlign: 'center',
+    //   fontSize: [(theme) => `${theme.fontSizes.h5}`, null, (theme) => `${theme.fontSizes.h4}`],
+    //   mb: (theme) => `${theme.space.spacing5}`,
+    //   textTransform: 'capitalize',
+    // }}
     >
       {item.name}
     </h1>
   );
   return (
-    <div
-      sx={{
-        display: 'flex',
-        flexDirection: ['column', null, null, 'row'],
-        justifyContent: 'space-between',
-        borderBottomWidth: [null, null, null, 'px'],
-      }}
+    <div className='flex flex-col lg:flex-row justify-between border-b'
+    // sx={{
+    //   display: 'flex',
+    //   flexDirection: ['column', null, null, 'row'],
+    //   justifyContent: 'space-between',
+    //   borderBottomWidth: [null, null, null, 'px'],
+    // }}
     >
       <div
-        className="main-content"
-        sx={{ order: [2, null, null, null, 1], maxWidth: 1560, width: '100%', mx: 'auto' }}
+        className="main-content max-w-[1560px] w-full mx-auto order-[2] xl:order[1]"
+      // sx={{ order: [2, null, null, null, 1], maxWidth: 1560, width: '100%', mx: 'auto' }}
       >
-        <div
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            pb: (theme) => `${theme.space.spacing6}`,
-          }}
+        <div className='flex flex-col pb-6'
+        // sx={{
+        //   display: 'flex',
+        //   flexDirection: 'column',
+        //   pb: (theme) => `${theme.space.spacing6}`,
+        // }}
         >
-          {header ? header(item) : defaultHeader(item)}
+
+          {/* {type = "author" ? <Header item={item} /> : header ? header(item) : defaultHeader(item)} */}
           <div
-            className="tabs"
-            sx={{
-              lineHeight: '18.4px',
-              overflow: 'auto',
-              overflowX: 'auto',
-              overflowY: 'auto',
-              textAlign: 'center',
-              textRendering: 'optimizelegibility',
-              whiteSpace: 'nowrap',
-              borderBottom: '1px solid #919191',
-              marginBottom: (theme) => `${theme.space.spacing5}`,
-            }}
+            className="tabs leading-[18.4px] overflow-auto overflowX-auto overflowY-auto text-center mb-4 whitespace-nowrap	border-b-[#919191] border-b"
+          // sx={{
+          //   lineHeight: '18.4px',
+          //   overflow: 'auto',
+          //   overflowX: 'auto',
+          //   overflowY: 'auto',
+          //   textAlign: 'center',
+          //   textRendering: 'optimizelegibility',
+          //   whiteSpace: 'nowrap',
+          //   borderBottom: '1px solid #919191',
+          //   marginBottom: (theme) => `${theme.space.spacing5}`,
+          // }}
           >
-            <ul
-              sx={{
-                fontSize: ' inherit',
-                fontFamily: 'inherit',
-                margin: 0,
-                padding: 0,
-                border: 0,
-                lineHeight: 'inherit',
-                listStyle: 'none',
-                display: 'inline-flex',
-                maxWidth: '100vw',
-                li: {
-                  fontSize: (theme) => `${theme.fontSizes.h7}`,
-                  fontWeight: 700,
-                  hyphens: 'auto',
-                  lineHeight: '16.8px',
-                  marginBottom: '0px',
-                  mx: (theme) => `${theme.space.spacing5}`,
-                  marginTop: 0,
-                  paddingBottom: (theme) => `${theme.space.spacing4}`,
-                  paddingLeft: '0px',
-                  paddingRight: '0px',
-                  paddingTop: (theme) => `${theme.space.spacing5}`,
-                  textAlign: 'center',
-                  textTransform: 'uppercase',
-                  whiteSpace: 'nowrap',
-                },
-              }}
+            <ul className='inline-flex m-0 p-0 border-0 list-none	max-w-[100vw] text-base font-[inherit] leading-[inherit] '
+            // sx={{
+            //   fontSize: ' inherit',
+            //   fontFamily: 'inherit',
+            //   margin: 0,
+            //   padding: 0,
+            //   border: 0,
+            //   lineHeight: 'inherit',
+            //   listStyle: 'none',
+            //   display: 'inline-flex',
+            //   maxWidth: '100vw',
+            //   li: {
+            //     fontSize: (theme) => `${theme.fontSizes.h7}`,
+            //     fontWeight: 700,
+            //     hyphens: 'auto',
+            //     lineHeight: '16.8px',
+            //     marginBottom: '0px',
+            //     mx: (theme) => `${theme.space.spacing5}`,
+            //     marginTop: 0,
+            //     paddingBottom: (theme) => `${theme.space.spacing4}`,
+            //     paddingLeft: '0px',
+            //     paddingRight: '0px',
+            //     paddingTop: (theme) => `${theme.space.spacing5}`,
+            //     textAlign: 'center',
+            //     textTransform: 'uppercase',
+            //     whiteSpace: 'nowrap',
+            //   },
+            // }}
             >
-              <li>
+              <li className='text-base font-bold leading-[16.8px] mb-0 mt-0 pl-0 pr-0 pb-3 pt-4 mx-4 whitespace-nowrap text-center uppercase'>
                 <ActiveLink passHref href={`/${type}/${slug}`} activeClassName="active">
                   All
                 </ActiveLink>
               </li>
               {formats?.map((tab, index) => (
-                <li key={index}>
+                <li className='text-base font-bold leading-[16.8px] mb-0 mt-0 pl-0 pr-0 pb-3 pt-4 mx-4 whitespace-nowrap text-center uppercase' key={index}>
                   <ActiveLink
                     passHref
                     href={`/${type}/${slug}/format/${tab.slug}`}
@@ -106,14 +108,14 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
           </div>
           {/* <Tabs baseUrl={`/categories/${dega.category.slug}`} /> */}
           {filteredPosts.length > 0 ? (
-            <div
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: ['1fr', null, 'repeat( 2, 1fr )', 'repeat( 3, 1fr)'],
-                px: [null, null, (theme) => `${theme.space.spacing6}`],
-                mt: (theme) => `${theme.space.spacing7}`,
-                gridGap: (theme) => `${theme.space.spacing7}`,
-              }}
+            <div className='grid grid-cols-3 px-6 mt-8 gap-8'
+            // sx={{
+            //   display: 'grid',
+            //   gridTemplateColumns: ['1fr', null, 'repeat( 2, 1fr )', 'repeat( 3, 1fr)'],
+            //   px: [null, null, (theme) => `${theme.space.spacing6}`],
+            //   mt: (theme) => `${theme.space.spacing7}`,
+            //   gridGap: (theme) => `${theme.space.spacing7}`,
+            // }}
             >
               {filteredPosts?.map((item, index) => (
                 <StoryCard
@@ -125,7 +127,9 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
               ))}
             </div>
           ) : (
-            <h2 sx={{ textAlign: 'center' }}>No posts found</h2>
+            <h2 className='text-center'
+            // sx={{ textAlign: 'center' }}
+            >No posts found</h2>
           )}
         </div>
       </div>

@@ -53,7 +53,7 @@ export default function NavBar({ logo, menu }) {
       //   borderBottomWidth: '1px',
       // }}
       >
-        <nav className='sticky flex max-w-[1560px] min-h-[60px] mx-auto flex-wrap lg:flex-wrap justify-between lg:justify-start items-center px-4 py-2 hover:a-[#ea364a]'
+        <nav className='sticky flex max-w-[1560px] min-h-[60px] mx-auto flex-wrap lg:flex-wrap justify-between lg:justify-start items-center px-4 py-2'
         // sx={{
         //   position: 'sticky',
         //   display: 'flex',
@@ -72,7 +72,7 @@ export default function NavBar({ logo, menu }) {
         // }}
         >
           <Link
-            className='relative lg:absolute top-[50%] left-[50%] transform-none lg:-translate-x-1/2 -translate-y-1/2 z-[999]'
+            className='relative lg:absolute lg:top-[50%] lg:left-[50%] transform-none lg:-translate-x-1/2 -translate-y-1/2 z-[999] hover:text-[#ea364a]'
             // sx={{
             //   position: ['relative', null, null, 'absolute'],
             //   transform: ['none', null, null, 'translate(-50%,-50%)'],
@@ -87,7 +87,7 @@ export default function NavBar({ logo, menu }) {
               alt="factly"
             />
           </Link>
-          <button className='hidden'
+          <button className='lg:hidden overflow-visible'
             type="button"
             // sx={{ display: [null, null, null, 'none'] }}
             onClick={() => handleClick()}
@@ -117,7 +117,7 @@ export default function NavBar({ logo, menu }) {
               <li className='hidden lg:block'
               // sx={{ display: ['none', null, null, 'block'] }}
               >
-                <Link className='px-2 xl:px-4 block py-2'
+                <Link className='px-2 xl:px-4 block py-2 hover:text-[#ea364a]'
                   // sx={{
                   //   px: [
                   //     (theme) => `${theme.space.spacing3}`,
@@ -137,7 +137,7 @@ export default function NavBar({ logo, menu }) {
 
               {mainMenu?.menu?.map((menuItem, index) => (
                 <li key={menuItem.title}>
-                  <Link className='px-2 xl:px-4 block py-2 uppercase font-semibold text-xs focus:outline-none'
+                  <Link className='px-2 xl:px-4 block py-2 uppercase font-semibold text-xs focus:outline-none hover:text-[#ea364a]'
                     // sx={{
                     //   px: [
                     //     (theme) => `${theme.space.spacing3}`,
@@ -160,7 +160,7 @@ export default function NavBar({ logo, menu }) {
                 </li>
               ))}
             </ul>
-            <ul className='flex items-center flex-col lg:flex-row list-none ml-auto'
+            <ul className='flex items-center flex-col lg:flex-row list-none lg:ml-auto'
             // sx={{
             //   display: 'flex',
             //   alignItems: 'center',
@@ -170,7 +170,7 @@ export default function NavBar({ logo, menu }) {
             // }}
             >
               <li>
-                <Link className='px-2 xl:px-4 block py-2 uppercase font-semibold text-xs focus:outline-none'
+                <Link className='px-2 xl:px-4 block py-2 uppercase font-semibold text-xs focus:outline-none hover:text-[#ea364a]'
                   // sx={{
                   //   px: [
                   //     (theme) => `${theme.space.spacing3}`,
