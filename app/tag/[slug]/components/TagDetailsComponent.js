@@ -1,4 +1,4 @@
-
+"use client"
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 import gql from 'graphql-tag';
@@ -14,6 +14,7 @@ import {
 import { client } from 'store/client';
 import FormatPageLayout from 'components/FormatPageLayout';
 import Head from 'next/head';
+import { notFound } from 'next/navigation';
 
 export default async function TagDetailsComponent({ data }) {
 
@@ -21,6 +22,9 @@ export default async function TagDetailsComponent({ data }) {
   // const formatType = 'fact-check';
   //const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
 
+  if (!data.tag) {
+    notFound();
+  }
   const header = (item) => {
     return (
       <div className='mb-6 text-xl'

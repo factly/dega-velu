@@ -1,3 +1,4 @@
+"use client"
 import * as React from 'react';
 import { isBrowser } from 'src/utils/isBrowser';
 import InnerHTML from 'dangerously-set-html-content';

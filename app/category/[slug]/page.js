@@ -1,20 +1,12 @@
 
-"use client"
-import React, { useState, useEffect } from 'react'; // eslint-disable-line no-unused-vars
-import { jsx } from 'theme-ui';
+import React from 'react';
 import gql from 'graphql-tag';
-import parseEditorJsData from 'src/utils/parseEditorJsData';
-import FormatPageLayout from 'components/FormatPageLayout';
 import { client } from 'store/client';
-import Head from 'next/head';
-import parseTiptapContent from 'src/utils/parseTiptapEditorData';
 import CategoryDetailsComponent from './components/CategoryDetailsComponent'
 
 export default async function CategoryPage({ params }) {
   const data = await getData({ params });
-  return (
-    <CategoryDetailsComponent data={data} />
-  )
+  return <CategoryDetailsComponent data={data} />
 }
 
 export async function getData({ params }) {

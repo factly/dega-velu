@@ -16,9 +16,9 @@ const ActiveLink = ({ children, activeClassName, ...props }) => {
   //     : childClassName;
 
   return (
-    <Link {...props}>
+    <a {...props}>
       {children}
-    </Link>
+    </a>
   );
 };
 

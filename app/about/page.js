@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { jsx } from 'theme-ui';
+
 // import Layout from '../components/Layout/index';
 import Link from 'next/link';
 

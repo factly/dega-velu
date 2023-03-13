@@ -6,8 +6,13 @@ import StoryCard from 'components/StoryCard';
 import { client } from 'store/client';
 import { jsx } from 'theme-ui';
 import Head from 'next/head';
+import { notFound } from 'next/navigation';
 
 export default async function FormatDetailsComponent({ data }) {
+
+  if (!data.format) {
+    notFound();
+  }
   const filteredPosts = data.posts.nodes.filter((post) => post.published_date !== null);
   return (
     <>

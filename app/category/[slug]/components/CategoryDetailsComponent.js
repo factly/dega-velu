@@ -1,18 +1,22 @@
-
+"use client"
 
 import React, { useState, useEffect } from 'react'; // eslint-disable-line no-unused-vars
-import { jsx } from 'theme-ui';
-import gql from 'graphql-tag';
-import parseEditorJsData from 'src/utils/parseEditorJsData';
+
 import FormatPageLayout from 'components/FormatPageLayout';
-import { client } from 'store/client';
+import { notFound } from 'next/navigation';
 import Head from 'next/head';
 import parseTiptapContent from 'src/utils/parseTiptapEditorData';
 
-export default async function CategoryDetailsComponent({ data }) {
+export default function CategoryDetailsComponent({ data }) {
+
+  console.log({ data, c: "details component" })
   //  const { dega } = data;
   // const formatType = 'fact-check';
   // const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
+
+  if (!data.category) {
+    notFound();
+  }
 
   const [readMore, setReadMore] = React.useState(true);
   const [isReadMoreNeeded, setIsReadMoreNeeded] = useState(false);
@@ -68,11 +72,10 @@ export default async function CategoryDetailsComponent({ data }) {
       </div>
     );
   };
+
   return (
-    <>
-      <Head>
-        <title> {data.category.name} </title>
-      </Head>
+    <div>
+
       <FormatPageLayout
         type="category"
         posts={data.posts.nodes}
@@ -80,7 +83,7 @@ export default async function CategoryDetailsComponent({ data }) {
         item={data.category}
         header={header}
       />
-    </>
+    </div>
   );
 }
 

@@ -1,13 +1,9 @@
-/** @jsx jsx */
-/** @jsxRuntime classic */
 "use client"
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { jsx } from 'theme-ui';
+
 import StoryCard from './StoryCard';
 import Link from 'next/link';
 import ActiveLink from './ActiveLink';
-import Header from './../app/author/[id]/components/Header';
-
 const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }) => {
   const slug = useSlug ? item.slug : item.id;
   const filteredPosts = posts.filter((post) => post.published_date !== null);
@@ -23,6 +19,8 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
       {item.name}
     </h1>
   );
+
+  console.log({ filteredPosts })
   return (
     <div className='flex flex-col lg:flex-row justify-between border-b'
     // sx={{
@@ -44,7 +42,7 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
         // }}
         >
 
-          {/* {type = "author" ? <Header item={item} /> : header ? header(item) : defaultHeader(item)} */}
+          {header ? header(item) : defaultHeader(item)}
           <div
             className="tabs leading-[18.4px] overflow-auto overflowX-auto overflowY-auto text-center mb-4 whitespace-nowrap	border-b-[#919191] border-b"
           // sx={{
@@ -89,6 +87,7 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
             // }}
             >
               <li className='text-base font-bold leading-[16.8px] mb-0 mt-0 pl-0 pr-0 pb-3 pt-4 mx-4 whitespace-nowrap text-center uppercase'>
+                {console.log({ type, slug })}
                 <ActiveLink passHref href={`/${type}/${slug}`} activeClassName="active">
                   All
                 </ActiveLink>
@@ -107,6 +106,7 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
             </ul>
           </div>
           {/* <Tabs baseUrl={`/categories/${dega.category.slug}`} /> */}
+
           {filteredPosts.length > 0 ? (
             <div className='grid grid-cols-3 px-6 mt-8 gap-8'
             // sx={{

@@ -192,7 +192,7 @@ function FactCheckWidget({ claims }) {
                         alignItems: 'center',
                         justifyContent: 'flex-end',
                       }}
-                    >
+                    > 
                       <a
                         sx={{
                           display: 'block',
@@ -235,7 +235,10 @@ function FactCheckWidget({ claims }) {
                       </a>
                     </div> */}
                   </div>
-                  <div className={`flex flex-col p-4 text-[#fff] bg-[${CLAIM_RATING[claim.rating.slug]}]`}
+                  <div className={`flex flex-col p-4 text-[#fff]`}
+                    style={{
+                      backgroundColor: CLAIM_RATING[claim.rating.slug]
+                    }}
                   // sx={{
                   //   display: 'flex',
                   //   flexDirection: 'column',

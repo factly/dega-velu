@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/** @jsx jsx */
-/** @jsxRuntime classic */
+"use client"
 import React, { useEffect } from 'react'; // eslint-disable-line no-unused-vars
-import { jsx } from 'theme-ui';
 
 const PodcastsPage = () => {
   const unviralImg = '/unviral.jpg';
