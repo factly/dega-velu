@@ -1,7 +1,6 @@
 "use client"
 
 import React from 'react'; // eslint-disable-line no-unused-vars
-import gql from 'graphql-tag';
 import { jsx } from 'theme-ui';
 import {
   FaEnvelope,
@@ -18,9 +17,6 @@ import { notFound } from 'next/navigation';
 
 export default async function TagDetailsComponent({ data }) {
 
-  // const { dega } = data;
-  // const formatType = 'fact-check';
-  //const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
 
   if (!data.tag) {
     notFound();
@@ -28,18 +24,8 @@ export default async function TagDetailsComponent({ data }) {
   const header = (item) => {
     return (
       <div className='mb-6 text-xl'
-      // sx={{
-      //   mb: (theme) => `${theme.space.spacing6}`,
-      //   fontSize: (theme) => `${theme.fontSizes.h6}`,
-      // }}
       >
         <h1 className='text-center capitalize mb-4 text-2xl sm:text-[2rem]'
-          sx={{
-            textAlign: 'center',
-            fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
-            mb: (theme) => `${theme.space.spacing5}`,
-            textTransform: 'capitalize',
-          }}
         >
           {item.name}
         </h1>

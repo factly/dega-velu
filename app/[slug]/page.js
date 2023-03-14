@@ -6,9 +6,6 @@ import PostDetailsComponent from './components/PostDetailsComponent';
 
 export default async function PostDetailsPage({ params }) {
   const data = await getData({ params });
-  console.log({ data })
-  // const filteredPosts = dega.posts.nodes.filter((post) => post.published_date !== null);
-  //const filteredPosts = posts.nodes.filter((p) => p.id !== post.id).slice(0, 6);
   //posts.unshift(dega.post);
 
   return (

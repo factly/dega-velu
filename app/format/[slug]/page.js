@@ -12,6 +12,23 @@ export default async function FormatPage({ params }) {
   )
 }
 
+
+export async function generateStaticParams() {
+  const { data } = await client.query({
+    query: gql`
+      query  {
+        sitemap {
+          formats {
+            slug
+          }
+        }
+      }`
+  })
+
+  const params = data.sitemap.formats.map(format => ({ slug: format.slug }))
+  return params
+}
+
 export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`

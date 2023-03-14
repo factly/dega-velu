@@ -24,6 +24,25 @@ export default async function TagDetailsAll({ params }) {
   );
 }
 
+export async function generateStaticParams() {
+  const { data } = await client.query({
+    query: gql`
+      query  {
+        sitemap {
+          formats {
+            slug
+          }
+          tags {
+            slug
+          }
+        }
+      }`
+  })
+
+  const params = [...data.sitemap.formats.map(format => [...data.sitemap.tags.map(tag => ({ slug: tag.slug, formatSlug: format.slug }))])]
+  return params
+}
+
 export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`

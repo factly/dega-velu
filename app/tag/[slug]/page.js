@@ -5,24 +5,33 @@
 
 import { jsx } from 'theme-ui';
 import gql from 'graphql-tag';
-import parseEditorJsData from 'src/utils/parseEditorJsData';
-import FormatPageLayout from 'components/FormatPageLayout';
-
 import { client } from 'store/client';
 import Head from 'next/head';
 import TagDetailsComponent from './components/TagDetailsComponent';
 
 export async function TagDetailsAll({ params }) {
   const data = await getData({ params });
-  //  const { dega } = data;
-  // const formatType = 'fact-check';
-  // const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
 
   return (
     <TagDetailsComponent data={data} />
   )
 }
 
+export async function generateStaticParams() {
+  const { data } = await client.query({
+    query: gql`
+      query  {
+        sitemap {
+          tags {
+            slug
+          }
+        }
+      }`
+  })
+
+  const params = data.sitemap.tags.map(tag => ({ slug: tag.slug }))
+  return params
+}
 
 export async function getData({ params }) {
   const { data } = await client.query({

@@ -37,42 +37,14 @@ const Post = ({ post, observer = () => { } }) => {
         post={post.id}
         ref={postSection}
         slug={post.slug}
-      // sx={{
-      //   display: 'flex',
-      //   flexDirection: 'column',
-      //   px: (theme) => `${theme.space.spacing6}`,
-      //   my: (theme) => `${theme.space.spacing6}`,
-      //   fontSize: (theme) => `${theme.fontSizes.body}`,
-      //   '&:first-of-type': {
-      //     mt: 0,
-      //   },
-      // }}
       >
         <div className='bg-[#fff] overflow-hidden rounded-t rounded-b-none	'
-        // sx={{
-        //   bg: (theme) => `${theme.colors.bgLight}`,
-        //   borderTopLeftRadius: 'default',
-        //   borderTopRightRadius: 'default',
-        //   borderBottomLeftRadius: 'none',
-        //   borderBottomRightRadius: 'none',
-        //   overflow: 'hidden',
-        // }}
         >
           <h1 className='font-bold text-3xl md:text-[2.5rem] py-2 leading-tight'
-          // sx={{
-          //   fontWeight: 'bold',
-          //   fontSize: (theme) => [`${theme.fontSizes.h4}`, null, `${theme.fontSizes.h3}`],
-          //   py: (theme) => `${theme.space.spacing3}`,
-          // }}
           >
             {post.title}
           </h1>
           <div className='flex flex-col md:flex-row justify-between'
-          // sx={{
-          //   display: 'flex',
-          //   flexDirection: ['column', null, 'row'],
-          //   justifyContent: 'space-between',
-          // }}
           >
             <PostInfo date={post.published_date} users={post.users} categories={post.categories} />
             {/* <ShareButtonGroup
@@ -87,11 +59,6 @@ const Post = ({ post, observer = () => { } }) => {
         <Excerpt excerpt={post.excerpt} image={post.medium} />
 
         <div className='w-full mx-auto text-base'
-        // sx={{
-        //   width: ['full'],
-        //   mx: 'auto',
-        //   fontSize: (theme) => `${theme.fontSizes.body}`,
-        // }}
         >
           {post.claims && <FactCheckWidget claims={post.claims} />}
           <div className="parsed">
@@ -102,21 +69,10 @@ const Post = ({ post, observer = () => { } }) => {
               <React.Fragment key={i}>
                 {post.claims.length > 1 && (
                   <div className='bg-[#EDF2F7] p-4 mt-4 '
-                  // sx={{
-                  //   bg: (theme) => `${theme.colors.bgPrimary}`,
-                  //   p: (theme) => `${theme.space.spacing5}`,
-                  //   mt: (theme) => `${theme.space.spacing5}`,
-                  // }}
                   >
                     <div className='mb-4'
-                    // sx={{
-                    //   mb: (theme) => `${theme.space.spacing5}`,
-                    // }}
                     >
                       <h4 className='font-bold'
-                      // sx={{
-                      //   fontWeight: 'bold',
-                      // }}
                       >
                         Claim:{' '}
                       </h4>
@@ -124,9 +80,6 @@ const Post = ({ post, observer = () => { } }) => {
                     </div>
                     <div>
                       <h4 className='font-bold'
-                      // sx={{
-                      //   fontWeight: 'bold',
-                      // }}
                       >
                         Fact:
                       </h4>
@@ -141,10 +94,6 @@ const Post = ({ post, observer = () => { } }) => {
               </React.Fragment>
             ))}
           <div className='bg-[#f7fafc] mt-4'
-          // sx={{
-          //   bg: (theme) => `${theme.colors.gray[1]}`,
-          //   mt: (theme) => `${theme.space.spacing5}`,
-          // }}
           >
             {/*post.claims?.map(claim=>{
    return claim.review_sources?.map(review_source=>{
@@ -169,22 +118,8 @@ const Post = ({ post, observer = () => { } }) => {
           </div>
 
           <div className='flex flex-wrap mt-6 pb-6 border-b	'
-          // sx={{
-          //   display: 'flex',
-          //   flexWrap: 'wrap',
-          //   mt: (theme) => `${theme.space.spacing6}`,
-          //   pb: (theme) => `${theme.space.spacing6}`,
-          //   borderBottomWidth: '1px',
-          // }}
           >
             <div className='flex flex-wrap first-of-type:ml-0'
-            // sx={{
-            //   display: 'flex',
-            //   flexWrap: 'wrap',
-            //   '& a:first-of-type': {
-            //     ml: 0,
-            //   },
-            // }}
             >
               {post.tags?.map((tag, i) => (
                 <Tag key={i} url={tag.slug} name={tag.name} />

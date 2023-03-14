@@ -3,9 +3,6 @@
 "use client"
 import { jsx } from 'theme-ui';
 import gql from 'graphql-tag';
-import Head from 'next/head';
-import FormatPageLayout from 'components/FormatPageLayout';
-import parseEditorJsData from 'src/utils/parseEditorJsData';
 import { client } from 'store/client';
 import CategoryDetailsComponent from '../../components/CategoryDetailsComponent';
 
@@ -14,6 +11,25 @@ export default async function CategoryDetailsAll({ params }) {
   return (
     <CategoryDetailsComponent data={data} />
   )
+}
+
+export async function generateStaticParams() {
+  const { data } = await client.query({
+    query: gql`
+      query  {
+        sitemap {
+          formats {
+            slug
+          }
+          categories {
+            slug
+          }
+        }
+      }`
+  })
+
+  const params = [...data.sitemap.formats.map(format => [...data.sitemap.categories.map(category => ({ slug: category.slug, formatSlug: format.slug }))])]
+  return params
 }
 
 

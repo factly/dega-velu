@@ -22,19 +22,6 @@ const Layout = ({ children }) => {
       <Navbar />
       <main className='w-full text-xl md:text-2xl text-[#2d3748] leading-normal pt-4 mt-[60px] mx-auto flex flex-col justify-between min-h-[calc(100vh-60px)]'
         style={{ maxWidth: '1560px' }}
-      // sx={{
-      //   width: 'full',
-      //   fontSize: [(theme) => `${theme.fontSizes.h6}`, null, (theme) => `${theme.fontSizes.h5}`],
-      //   color: (theme) => `${theme.colors.textPrimary}`,
-      //   lineHeight: 'normal',
-      //   pt: [(theme) => `${theme.space.spacing5}`, 0, 0],
-      //   mt: '60px',
-      //   minHeight: 'calc(100vh - 60px)',
-      //   mx: 'auto',
-      //   display: 'flex',
-      //   flexDirection: 'column',
-      //   justifyContent: 'space-between',
-      // }}
       >
         {children}
       </main>

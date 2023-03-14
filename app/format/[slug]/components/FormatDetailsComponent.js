@@ -6,13 +6,13 @@ import StoryCard from 'components/StoryCard';
 import { client } from 'store/client';
 import { jsx } from 'theme-ui';
 import Head from 'next/head';
-import { notFound } from 'next/navigation';
+// import { notFound } from 'next/navigation';
 
 export default async function FormatDetailsComponent({ data }) {
 
-  if (!data.format) {
-    notFound();
-  }
+  // if (!data.format) {
+  //   notFound();
+  // }
   const filteredPosts = data.posts.nodes.filter((post) => post.published_date !== null);
   return (
     <>
@@ -20,34 +20,15 @@ export default async function FormatDetailsComponent({ data }) {
         <title> {filteredPosts[0]?.format.name} </title>
       </Head>
       <div className='mx-auto max-w-[1560px]'
-      // sx={{ mx: 'auto', maxWidth: 1560 }}
       >
         <h1 className='mt-12 mb-6 text-center text-2xl sm:text-[2rem]'
-        // sx={{
-        //    mt: (theme) => `${theme.space.layout4}`,
-        //    mb: (theme) => `${theme.space.layout2}`,
-        //   textAlign: 'center',
-        //    fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
-        // }}
         >
           {filteredPosts[0]?.format.name}
         </h1>
         <div className='flex flex-col pb-6 pt-8'
-        // sx={{
-        //   display: 'flex',
-        //   flexDirection: 'column',
-        //    pb: (theme) => `${theme.space.spacing6}`,
-        //    pt: [null, null, null, (theme) => `${theme.space.spacing7}`],
-        // }}
         >
           {filteredPosts.length > 0 ? (
             <div className='grid gap-6 px-6 md:grid-cols-2 lg:grid-cols-3	 '
-            // sx={{
-            //   display: 'grid',
-            //   gridTemplateColumns: ['1fr', null, 'repeat(2, 1fr)', 'repeat(3,1fr)'],
-            //   gridGap: (theme) => `${theme.space.spacing6}`,
-            //   px: [null, null, (theme) => `${theme.space.spacing6}`],
-            // }}
             >
               {filteredPosts?.map((item, index) => (
                 <StoryCard
@@ -61,7 +42,6 @@ export default async function FormatDetailsComponent({ data }) {
             </div>
           ) : (
             <h2 className='text-center'
-            // sx={{ textAlign: 'center' }}
             >No posts found</h2>
           )}
         </div>

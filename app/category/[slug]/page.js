@@ -9,6 +9,22 @@ export default async function CategoryPage({ params }) {
   return <CategoryDetailsComponent data={data} />
 }
 
+export async function generateStaticParams() {
+  const { data } = await client.query({
+    query: gql`
+      query  {
+        sitemap {
+          categories {
+            slug
+          }
+        }
+      }`
+  })
+
+  const params = data.sitemap.categories.map(category => ({ slug: category.slug }))
+  return params
+}
+
 export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`

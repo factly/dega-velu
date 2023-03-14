@@ -1,15 +1,5 @@
 
 import React from 'react'; // eslint-disable-line no-unused-vars
-// import { jsx } from 'theme-ui';
-import {
-  FaEnvelope,
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaLink,
-  FaLinkedin,
-  FaTwitterSquare,
-} from 'react-icons/fa';
-
 import FormatPageLayout from 'components/FormatPageLayout';
 import gql from 'graphql-tag';
 import { client } from 'store/client';
@@ -23,6 +13,21 @@ export default async function UserDetailsAll({ params }) {
     <UserDetailsComponent data={data} />
   )
 }
+// export async function generateStaticParams() {
+//   const { data } = await client.query({
+//     query: gql`
+//       query  {
+//         sitemap {
+//           users {
+//             slug
+//           }
+//         }
+//       }`
+//   })
+
+//   const params = data.sitemap.users.map(user => ({ slug: user.slug }))
+//   return params
+// }
 
 export async function getData({ params }) {
   const { data } = await client.query({

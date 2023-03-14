@@ -23,6 +23,26 @@ export default async function UserDetailsFormat({ params }) {
     <UserDetailsComponent data={data} />
   )
 }
+
+// export async function generateStaticParams() {
+//   const { data } = await client.query({
+//     query: gql`
+//       query  {
+//         sitemap {
+//           formats {
+//             slug
+//           }
+//           users {
+//             slug
+//           }
+//         }
+//       }`
+//   })
+
+//   const params = [...data.sitemap.formats.map(format => [...data.sitemap.users.map(user => ({ slug: user.slug, formatSlug: format.slug }))])]
+//   return params
+//}
+
 export async function getData({ params }) {
   const { data } = await client.query({
     query: gql`
