@@ -1,4 +1,5 @@
-"use client"
+/** @jsx jsx */
+/** @jsxRuntime classic */
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 import gql from 'graphql-tag';
@@ -14,36 +15,52 @@ import {
 import { client } from 'store/client';
 import FormatPageLayout from 'components/FormatPageLayout';
 import Head from 'next/head';
-import TagDetailsComponent from '../../components/TagDetailsComponent';
 
-export default async function TagDetailsAll({ params }) {
-  const data = await getData({ params })
+function TagDetailsAll({ data }) {
+  //  const { dega } = data;
+  // const formatType = 'fact-check';
+  // const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
 
+  const header = (item) => {
+    return (
+      <div
+        sx={{
+          mb: (theme) => `${theme.space.spacing6}`,
+          fontSize: (theme) => `${theme.fontSizes.h6}`,
+        }}
+      >
+        <h1
+          sx={{
+            textAlign: 'center',
+            fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
+            mb: (theme) => `${theme.space.spacing5}`,
+            textTransform: 'capitalize',
+          }}
+        >
+          {item.name}
+        </h1>
+      </div>
+    );
+  };
   return (
-    <TagDetailsComponent data={data} />
+    <>
+      <Head>
+        <title> {data.tag.name} </title>
+      </Head>
+      <FormatPageLayout
+        type="tag"
+        posts={data.posts.nodes}
+        formats={data.formats.nodes}
+        item={data.tag}
+        header={header}
+      />
+    </>
   );
 }
 
-export async function generateStaticParams() {
-  const { data } = await client.query({
-    query: gql`
-      query  {
-        sitemap {
-          formats {
-            slug
-          }
-          tags {
-            slug
-          }
-        }
-      }`
-  })
+export default TagDetailsAll;
 
-  const params = [...data.sitemap.formats.map(format => [...data.sitemap.tags.map(tag => ({ slug: tag.slug, formatSlug: format.slug }))])]
-  return params
-}
-
-export async function getData({ params }) {
+export async function getServerSideProps({ params }) {
   const { data } = await client.query({
     query: gql`
       query ($slug: String!, $formatSlug: String!) {
@@ -102,16 +119,15 @@ export async function getData({ params }) {
     },
   });
 
-  return data;
-  // if (!data || !data.tag) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+  if (!data || !data.tag) {
+    return {
+      notFound: true,
+    };
+  }
 
-  // return {
-  //   props: {
-  //     data,
-  //   },
-  // };
+  return {
+    props: {
+      data,
+    },
+  };
 }

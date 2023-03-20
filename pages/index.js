@@ -4,8 +4,7 @@ import gql from 'graphql-tag';
 import Homepage from 'components/Homepage';
 import Head from 'next/head';
 
-export default async function Home({ }) {
-  const data = await getData();
+export default function Home({ data }) {
   return (
     <>
       <Head>
@@ -16,7 +15,7 @@ export default async function Home({ }) {
   );
 }
 
-export async function getData(context) {
+export async function getServerSideProps(context) {
   const { data } = await client.query({
     query: gql`
       query Homepage {
@@ -111,16 +110,15 @@ export async function getData(context) {
     `,
   });
 
-  return data;
-  // if (!data) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
 
-  // return {
-  //   props: {
-  //     data,
-  //   },
-  // };
+  return {
+    props: {
+      data,
+    },
+  };
 }
