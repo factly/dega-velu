@@ -39,7 +39,7 @@ function FormatPage({ data }) {
                 display: 'grid',
                 gridTemplateColumns: ['1fr', null, 'repeat(2, 1fr)', 'repeat(3,1fr)'],
                 gridGap: (theme) => `${theme.space.spacing6}`,
-                px: [null, null, (theme) => `${theme.space.spacing6}`],
+                px: [(theme) => `${theme.space.spacing5}`, null, (theme) => `${theme.space.spacing6}`],
               }}
             >
               {filteredPosts?.map((item, index) => (
