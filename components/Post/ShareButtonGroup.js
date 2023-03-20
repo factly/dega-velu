@@ -1,4 +1,5 @@
-"use client"
+/** @jsx jsx */
+/** @jsxRuntime classic */
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { FaFacebookSquare, FaTwitterSquare, FaWhatsappSquare } from 'react-icons/fa';
 import { jsx } from 'theme-ui';
@@ -19,33 +20,58 @@ const ShareButtonGroup = ({ data, setRef }) => {
   let title = encodeURIComponent(data.title);
   // let url = encodeURIComponent(data.url)
   return (
-    <div className='flex items-center justify-start md:justify-end text-xl a:first-of-type-[ml-0]'
+    <div
       social-icon=""
       ref={setRef}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: ['flex-start', null, 'flex-end'],
+        fontSize: (theme) => `${theme.fontSizes.h6}`,
+        '& a:first-of-type': { ml: 0 },
+      }}
     >
-      <a className='block font-semibold rounded m-1'
+      <a
         title="Share on Facebook"
         href={`https://www.facebook.com/sharer.php?u=${data.url}`}
         target="_blank"
         rel="noopener noreferrer"
+        sx={{
+          display: 'block',
+          m: (theme) => `${theme.space.spacing2}`,
+          fontWeight: 'semibold',
+          borderRadius: 'default',
+        }}
       >
         <FaFacebookSquare color={socialFacebook} fontSize={h6} />
       </a>
       {/* title uri ====> href={`https://twitter.com/share?text=${title}-&url=${data.url}`} */}
-      <a className='block font-semibold rounded m-1'
+      <a
         title="Tweet it"
         href={`https://twitter.com/share?url=${data.url}`}
         target="_blank"
         rel="noopener noreferrer"
+        sx={{
+          display: 'block',
+          m: (theme) => `${theme.space.spacing2}`,
+          fontWeight: 'semibold',
+          borderRadius: 'default',
+        }}
       >
         <FaTwitterSquare color={socialTwitter} fontSize={h6} />
       </a>
       {/* title uri ===> href={`https://api.whatsapp.com/send?text=${title}-${data.url}`} */}
-      <a className='block font-semibold rounded m-1'
+      <a
         title="Share on WhatsApp"
         href={`https://api.whatsapp.com/send?text=${data.url}`}
         target="_blank"
         rel="noopener noreferrer"
+        sx={{
+          display: 'block',
+          m: (theme) => `${theme.space.spacing2}`,
+          fontWeight: 'semibold',
+          borderRadius: 'default',
+        }}
       >
         <FaWhatsappSquare color={socialWhatsapp} fontSize={h6} />
       </a>

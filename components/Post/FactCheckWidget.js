@@ -1,5 +1,7 @@
+/** @jsx jsx */
+/** @jsxRuntime classic */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-"use client"
+
 import React, { useEffect, useRef, useState } from 'react'; // eslint-disable-line no-unused-vars
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { jsx } from 'theme-ui';
@@ -59,60 +61,114 @@ function FactCheckWidget({ claims }) {
   },[sliderElement.current ]) */
 
   return (
-    <div className='w-full lg:w-[3/4] mx-auto text-base mb-4'
+    <div
+      sx={{
+        width: ['full', null, null, '3/4'],
+        mx: 'auto',
+        fontSize: (theme) => `${theme.fontSizes.body}`,
+        mb: (theme) => `${theme.space.spacing5}`,
+      }}
     >
-
-
       {claims.length >= 1 && (
         <React.Fragment>
-          <div className='flex flex-row justify-between content-center pt-6 pb-2'
+          <div
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignContent: 'center',
+              justifyContent: 'space-between',
+              pt: (theme) => `${theme.space.spacing6}`,
+              pb: (theme) => `${theme.space.spacing3}`,
+            }}
           >
-            <button className={`${disable.left ? 'cursor-not-allowed' : 'cursor-pointer'} ${disable.left ? 'opacity[0.5]' : ""} border border-[#edf2f7] rounded text-left text-xl p-2 focus: outline-none`}
-
+            <button
               type="button"
               onClick={handlePrevClick}
               href-id="claim-1"
               disabled={disable.left}
+              sx={{
+                borderWidth: '1px',
+                borderColor: (theme) => `${theme.colors.borderPrimary}`,
+                borderRadius: 'default',
+                textAlign: 'left',
+                fontSize: (theme) => `${theme.fontSizes.h6}`,
+                p: (theme) => `${theme.space.spacing3}`,
+                '&:focus': { outline: 'none' },
+                cursor: disable.left ? 'not-allowed' : 'pointer',
+                opacity: disable.left ? 0.5 : null,
+              }}
             >
-              <FaChevronLeft className='fill-current	w-4 h-4'
-
-              />
+              <FaChevronLeft sx={{ fill: 'currentColor', width: 4, height: 4 }} />
             </button>
-            <h2 className='w-full py-2 text-center uppercase font-bold font-[metropolis]'
-
+            <h2
+              sx={{
+                width: 'full',
+                py: (theme) => `${theme.space.spacing3}`,
+                textAlign: 'center',
+                fontFamily: (theme) => `${theme.fonts.metropolis}`,
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
+              }}
             >
               List of claims
             </h2>
-            <button className={`${disable.right ? 'cursor-not-allowed' : 'cursor-pointer'} ${disable.right ? 'opacity[0.5]' : ""} border border-[#edf2f7] rounded text-left text-xl p-2 focus: outline-none`}
-
+            <button
               type="button"
               onClick={handleNextClick}
               href-id="claim-1"
               disabled={disable.right}
+              sx={{
+                borderWidth: '1px',
+                borderColor: (theme) => `${theme.colors.borderPrimary}`,
+                borderRadius: 'default',
+                textAlign: 'left',
+                fontSize: (theme) => `${theme.fontSizes.h6}`,
+                p: (theme) => `${theme.space.spacing3}`,
+                '&:focus': { outline: 'none' },
+                cursor: disable.right ? 'not-allowed' : 'pointer',
+                opacity: disable.right ? 0.5 : null,
+              }}
             >
-              <FaChevronRight className='fill-current	w-4 h-4'
-              // sx={{ fill: 'currentColor', width: 4, height: 4 }} 
-
-              />
+              <FaChevronRight sx={{ fill: 'currentColor', width: 4, height: 4 }} />
             </button>
           </div>
           <div
             ref={sliderElement}
-            className="sliderF flex overflow-x-auto pb-6"
+            className="sliderF"
+            sx={{ display: 'flex', overflowX: 'auto', pb: (theme) => `${theme.space.spacing6}` }}
           >
             {claims?.map((claim, i) => (
-              <div className='inline-block w-full flex-none snap-start mr-6'
+              <div
                 id={`claim-${i}`}
                 key={i}
+                sx={{
+                  display: 'inline-block',
+                  flex: 'none',
+                  width: 'full',
+                  scrollSnapAlign: 'start',
+                  mr: (theme) => `${theme.space.spacing6}`,
+                }}
               >
-                <div className='w-full flex flex-col border shadow-lg	'
+                <div
+                  sx={{
+                    width: 'full',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderWidth: '1px',
+                    boxShadow: 'lg',
+                  }}
                 >
-                  <div className='flex justify-between items-center'
+                  <div
+                    sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   >
-                    <div className='flex items-baseline p-4'
+                    <div
+                      sx={{
+                        display: 'flex',
+                        p: (theme) => `${theme.space.spacing5}`,
+                        alignItems: 'baseline',
+                      }}
                     >
-                      <h2 className='font-bold mr-2'
-                      >
+                      <h2 sx={{ fontWeight: 'bold', mr: (theme) => `${theme.space.spacing3}` }}>
                         Claimant:{' '}
                       </h2>
                       {claim.claimant.name}
@@ -126,7 +182,7 @@ function FactCheckWidget({ claims }) {
                         alignItems: 'center',
                         justifyContent: 'flex-end',
                       }}
-                    > 
+                    >
                       <a
                         sx={{
                           display: 'block',
@@ -169,30 +225,45 @@ function FactCheckWidget({ claims }) {
                       </a>
                     </div> */}
                   </div>
-                  <div className={`flex flex-col p-4 text-[#fff]`}
-                    style={{
-                      backgroundColor: CLAIM_RATING[claim.rating.slug]
+                  <div
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      p: (theme) => `${theme.space.spacing5}`,
+                      color: (theme) => `${theme.colors.textLight}`,
+                      bg: CLAIM_RATING[claim.rating.slug],
                     }}
                   >
-                    <h2 className='font-bold py-2'
-                    >
+                    <h2 sx={{ fontWeight: 'bold', py: (theme) => `${theme.space.spacing3}` }}>
                       Claim:{' '}
                     </h2>
-                    <div className="parsed flex"
-                    >
+                    <div className="parsed" sx={{ display: 'flex' }}>
                       {claim.claim}
                       {claim.rating.medium && (
-                        <img className='w-1/6 h-full m-2 rounded-tl	rounded-tr	 '
+                        <img
                           src={claim.rating.medium?.url.proxy}
                           alt={claim.rating.medium?.alt_text}
+                          //onError={addDefaultSrc}
+                          sx={{
+                            width: '1/6',
+                            height: 'full',
+                            m: (theme) => `${theme.space.spacing3}`,
+                            borderTopLeftRadius: 'default',
+                            borderTopRightRadius: 'default',
+                          }}
                         />
                       )}
                     </div>
                   </div>
-                  <div className='flex flex-col border-b p-4'
+                  <div
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      p: (theme) => `${theme.space.spacing5}`,
+                      borderBottomWidth: '1px',
+                    }}
                   >
-                    <h2 className='font-bold'
-                    >Fact: </h2>
+                    <h2 sx={{ fontWeight: 'bold' }}>Fact: </h2>
 
                     <div className="parsed">
                       <p dangerouslySetInnerHTML={{ __html: claim.fact }} />

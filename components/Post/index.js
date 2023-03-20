@@ -1,8 +1,9 @@
-"use client"
+/** @jsx jsx */
+/** @jsxRuntime classic */
 import React, { useRef, useEffect, createRef } from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
 import PostInfo from './PostInfo';
-// import ShareButtonGroup from './ShareButtonGroup';
+import ShareButtonGroup from './ShareButtonGroup';
 import FactCheckWidget from './FactCheckWidget';
 import Tag from './Tag';
 import Excerpt from './Excerpt';
@@ -31,34 +32,66 @@ const Post = ({ post, observer = () => { } }) => {
             {JSON.stringify(schema)}
           </script>
         ))}
-      </Helmet>  */}
+      </Helmet> */}
       <article
-        className='flex flex-col px-6 my-6 text-base first-of-type:mt-0'
         post={post.id}
         ref={postSection}
         slug={post.slug}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          px: (theme) => `${theme.space.spacing6}`,
+          my: (theme) => `${theme.space.spacing6}`,
+          fontSize: (theme) => `${theme.fontSizes.body}`,
+          '&:first-of-type': {
+            mt: 0,
+          },
+        }}
       >
-        <div className='bg-[#fff] overflow-hidden rounded-t rounded-b-none	'
+        <div
+          sx={{
+            bg: (theme) => `${theme.colors.bgLight}`,
+            borderTopLeftRadius: 'default',
+            borderTopRightRadius: 'default',
+            borderBottomLeftRadius: 'none',
+            borderBottomRightRadius: 'none',
+            overflow: 'hidden',
+          }}
         >
-          <h1 className='font-bold text-3xl md:text-[2.5rem] py-2 leading-tight'
+          <h1
+            sx={{
+              fontWeight: 'bold',
+              fontSize: (theme) => [`${theme.fontSizes.h4}`, null, `${theme.fontSizes.h3}`],
+              py: (theme) => `${theme.space.spacing3}`,
+            }}
           >
             {post.title}
           </h1>
-          <div className='flex flex-col md:flex-row justify-between'
+          <div
+            sx={{
+              display: 'flex',
+              flexDirection: ['column', null, 'row'],
+              justifyContent: 'space-between',
+            }}
           >
             <PostInfo date={post.published_date} users={post.users} categories={post.categories} />
-            {/* <ShareButtonGroup
+            <ShareButtonGroup
               setRef={headerSocialIcon}
               data={{
                 url: encodeURIComponent(process.browser ? window.location.href : null),
                 title: encodeURIComponent(post.title),
               }}
-            /> */}
+            />
           </div>
         </div>
         <Excerpt excerpt={post.excerpt} image={post.medium} />
 
-        <div className='w-full mx-auto text-base'
+        <div
+          sx={{
+            width: ['full'],
+            mx: 'auto',
+            fontSize: (theme) => `${theme.fontSizes.body}`,
+          }}
         >
           {post.claims && <FactCheckWidget claims={post.claims} />}
           <div className="parsed">
@@ -68,18 +101,32 @@ const Post = ({ post, observer = () => { } }) => {
             post.claims?.map((claim, i) => (
               <React.Fragment key={i}>
                 {post.claims.length > 1 && (
-                  <div className='bg-[#EDF2F7] p-4 mt-4 '
+                  <div
+                    sx={{
+                      bg: (theme) => `${theme.colors.bgPrimary}`,
+                      p: (theme) => `${theme.space.spacing5}`,
+                      mt: (theme) => `${theme.space.spacing5}`,
+                    }}
                   >
-                    <div className='mb-4'
+                    <div
+                      sx={{
+                        mb: (theme) => `${theme.space.spacing5}`,
+                      }}
                     >
-                      <h4 className='font-bold'
+                      <h4
+                        sx={{
+                          fontWeight: 'bold',
+                        }}
                       >
                         Claim:{' '}
                       </h4>
                       {claim.claim}
                     </div>
                     <div>
-                      <h4 className='font-bold'
+                      <h4
+                        sx={{
+                          fontWeight: 'bold',
+                        }}
                       >
                         Fact:
                       </h4>
@@ -93,7 +140,11 @@ const Post = ({ post, observer = () => { } }) => {
                 </div>
               </React.Fragment>
             ))}
-          <div className='bg-[#f7fafc] mt-4'
+          <div
+            sx={{
+              bg: (theme) => `${theme.colors.gray[1]}`,
+              mt: (theme) => `${theme.space.spacing5}`,
+            }}
           >
             {/*post.claims?.map(claim=>{
    return claim.review_sources?.map(review_source=>{
@@ -104,10 +155,10 @@ const Post = ({ post, observer = () => { } }) => {
 
             {post.claims?.map((claim) =>
               claim.review_sources?.map((review_source, i) => (
-                <a className='block'
+                <a
                   href={review_source.url}
                   target="_blank"
-                  // sx={{ display: 'block' }}
+                  sx={{ display: 'block' }}
                   key={i}
                   rel="noreferrer noopener"
                 >
@@ -117,9 +168,23 @@ const Post = ({ post, observer = () => { } }) => {
             )}
           </div>
 
-          <div className='flex flex-wrap mt-6 pb-6 border-b	'
+          <div
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              mt: (theme) => `${theme.space.spacing6}`,
+              pb: (theme) => `${theme.space.spacing6}`,
+              borderBottomWidth: '1px',
+            }}
           >
-            <div className='flex flex-wrap first-of-type:ml-0'
+            <div
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                '& a:first-of-type': {
+                  ml: 0,
+                },
+              }}
             >
               {post.tags?.map((tag, i) => (
                 <Tag key={i} url={tag.slug} name={tag.name} />
