@@ -388,7 +388,7 @@ const StoryCard = ({
           }}
         >
           <div
-            style={{ minWidth: '15rem', maxWidth: '15rem', maxHeight: '15rem' }}
+            style={{ minWidth: '15rem', maxWidth: [null, '15rem'], maxHeight: '15rem' }}
             sx={{ borderRadius: 'lg' }}
           >
             {storyData.medium && (
