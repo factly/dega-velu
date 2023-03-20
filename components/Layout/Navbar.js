@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-"use client"
+/** @jsx jsx */
+/** @jsxRuntime classic */
 
 import React, { useState, useEffect } from 'react';
 import { jsx } from 'theme-ui';
