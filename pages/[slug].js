@@ -92,8 +92,8 @@ export default function PostDetails({ post, posts }) {
         <meta property="og:type" content="article" />
         {post.schemas &&
           post.schemas?.map((schema, i) => (
-            <script key={i} type="application/ld+json">
-              {JSON.stringify(schema)}
+            <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}>
+
             </script>
           ))}
       </Head>
