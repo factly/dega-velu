@@ -17,43 +17,38 @@ function generateSiteMap(sitemap) {
 
 
   return `<?xml version="1.0" encoding="UTF-8"?>
+  
   <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     
-   ${postArray.map((_, i) => {
-    return `<url>
+
+
+  <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  ${postArray.map((_, i) => {
+    return `<sitemap>
       <loc>${`${publicRuntimeConfig.siteURL}/sitemap-posts-${i + 1}.xml/`}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-  </url>`
+  </sitemap>`
   })}
   ${authorPagesLength && authorArray.map((_, i) => {
-    return `<url>
+    return `<sitemap>
       <loc>${`${publicRuntimeConfig.siteURL}/sitemap-authors-${i + 1}.xml/`}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-  </url>`
+  </sitemap>`
   })}
   ${categoryArray.map((_, i) => {
-    return `<url>
+    return `<sitemap>
       <loc>${`${publicRuntimeConfig.siteURL}/sitemap-categories-${i + 1}.xml/`}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-  </url>`
+  </sitemap>`
   })}
   ${tagArray.map((_, i) => {
-    return `<url>
+    return `<sitemap>
       <loc>${`${publicRuntimeConfig.siteURL}/sitemap-tags-${i + 1}.xml/`}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-  </url>`
+  </sitemap>`
   })}
-   </urlset>
- `;
+  </sitemapindex>
+`;
 }
 
 function SiteMapTag() {

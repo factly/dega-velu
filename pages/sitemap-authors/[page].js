@@ -7,23 +7,23 @@ function generateSiteMap(users) {
 
   return `<?xml version="1.0" encoding="UTF-8"?>
   <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <!--We manually set the two URLs we know already-->
-     ${users
+  
+  <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!--We manually set the two URLs we know already-->
+    ${users
       .map((user) => {
         return `
   <url>
       <loc>${`${publicRuntimeConfig.siteURL}/user/${user?.slug}/`}</loc>
       <lastmod>${user?.updated_at}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
   </url>
 
-     `;
+    `;
       })
       .join('')}
-   </urlset>
- `;
+</urlset>
+`;
 }
 
 function SiteMapUser() {
