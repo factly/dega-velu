@@ -29,7 +29,6 @@ function generateSiteMap(tags) {
 }
 
 function SiteMapTag() {
-  // getServerSideProps will do the heavy lifting
 }
 
 export async function getServerSideProps({ params, res }) {
@@ -61,7 +60,6 @@ export async function getServerSideProps({ params, res }) {
   const sitemap = await generateSiteMap([...data.sitemap.tags].reverse().slice(start, end));
 
   res.setHeader('Content-Type', 'text/xml');
-  // we send the XML to the browser
   res.write(sitemap);
   res.end();
 
