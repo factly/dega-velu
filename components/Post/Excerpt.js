@@ -29,7 +29,7 @@ const Excerpt = ({ excerpt, image }) => (
             height: 'full',
             objectFit: 'cover',
           }}
-          // onError={addDefaultSrc}
+        // onError={addDefaultSrc}
         />
       </div>
     )}

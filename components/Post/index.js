@@ -14,13 +14,13 @@ import parseTiptapContent from 'src/utils/parseTiptapEditorData';
  * TODO: Add backgroudn to embeds if failed like factly.in
  */
 
-const Post = ({ post, observer }) => {
+const Post = ({ post, observer = () => { } }) => {
   const postSection = useRef(null);
   const headerSocialIcon = createRef();
 
   useEffect(() => {
-    observer.observe(postSection.current);
-    observer.observe(headerSocialIcon.current);
+    // observer.observe(postSection.current);
+    // observer.observe(headerSocialIcon.current);
   }, [observer, postSection, headerSocialIcon]);
 
   return (

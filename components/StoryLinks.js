@@ -22,18 +22,16 @@ const StoryLinks = ({ post, postActiveIndex, categories = true, index }) => {
         borderColor: (theme) => `${theme.colors.borderPrimary}`,
       }}
     >
-      <Link passHref href={`/${post.slug}`}>
-        <a
-          className="horizontal"
-          sx={{
-            width: 'full',
-            display: 'flex',
-            textDecoration: 'none',
-            '&:hover': { textDecoration: 'none' },
-          }}
-        >
-          <div sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}>
-            {/* {post.categories && (
+      <Link className="horizontal"
+        sx={{
+          width: 'full',
+          display: 'flex',
+          textDecoration: 'none',
+          '&:hover': { textDecoration: 'none' },
+        }}
+        passHref href={`/${post.slug}`}>
+        <div sx={{ width: 'full', display: 'flex', flexDirection: 'column' }}>
+          {/* {post.categories && (
             <p
               sx={{
                 width: 'full',
@@ -48,28 +46,27 @@ const StoryLinks = ({ post, postActiveIndex, categories = true, index }) => {
               })}
             </p>
           )} */}
-            <div
-              id={`nav-${index}`}
-              className={`${postActiveIndex === post.slug ? 'active' : ''}`}
-              sx={{
-                width: 'full',
-                fontWeight: 'bold',
-                fontSize: (theme) => `${theme.fontSizes.h7}`,
-                color: (theme) => `${theme.colors.textPrimary}`,
-                '&.active': {
-                  color: (theme) => `${theme.colors.textLinkPrimary}`,
-                },
-              }}
-            >
-              {post.title}
-            </div>
-            <div sx={{ display: 'flex' }}>
-              <span sx={{ fontSize: (theme) => `${theme.fontSizes.h8}` }}>
-                {parseDate(post.published_date)}
-              </span>
-            </div>
+          <div
+            id={`nav-${index}`}
+            className={`${postActiveIndex === post.slug ? 'active' : ''}`}
+            sx={{
+              width: 'full',
+              fontWeight: 'bold',
+              fontSize: (theme) => `${theme.fontSizes.h7}`,
+              color: (theme) => `${theme.colors.textPrimary}`,
+              '&.active': {
+                color: (theme) => `${theme.colors.textLinkPrimary}`,
+              },
+            }}
+          >
+            {post.title}
           </div>
-        </a>
+          <div sx={{ display: 'flex' }}>
+            <span sx={{ fontSize: (theme) => `${theme.fontSizes.h8}` }}>
+              {parseDate(post.published_date)}
+            </span>
+          </div>
+        </div>
       </Link>
     </article>
   );

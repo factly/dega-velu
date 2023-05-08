@@ -92,8 +92,8 @@ export default function PostDetails({ post, posts }) {
         <meta property="og:type" content="article" />
         {post.schemas &&
           post.schemas?.map((schema, i) => (
-            <script key={i} type="application/ld+json">
-              {JSON.stringify(schema)}
+            <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}>
+
             </script>
           ))}
       </Head>
@@ -227,16 +227,14 @@ export default function PostDetails({ post, posts }) {
                     textAlign: 'left',
                   }}
                 >
-                  <Link href={`/${p.slug}`}>
-                    <a sx={{ display: 'flex', cursor: 'pointer' }}>
-                      <div sx={{ flex: '0 0 33%' }}>
-                        <img src={p?.medium?.url?.proxy} alt="" />
-                      </div>
-                      <div sx={{ flex: '0 0 67%', pl: '1rem' }}>
-                        <h5>{p.title}</h5>
-                        <p sx={{ fontSize: '0.75rem' }}>{parseDate(p.published_date)}</p>
-                      </div>
-                    </a>
+                  <Link sx={{ display: 'flex', cursor: 'pointer' }} href={`/${p.slug}`}>
+                    <div sx={{ flex: '0 0 33%' }}>
+                      <img src={p?.medium?.url?.proxy} alt="" />
+                    </div>
+                    <div sx={{ flex: '0 0 67%', pl: '1rem' }}>
+                      <h5>{p.title}</h5>
+                      <p sx={{ fontSize: '0.75rem' }}>{parseDate(p.published_date)}</p>
+                    </div>
                   </Link>
                 </div>
               ))}

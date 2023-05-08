@@ -87,7 +87,7 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
             >
               <li>
                 <ActiveLink passHref href={`/${type}/${slug}`} activeClassName="active">
-                  <a>All</a>
+                  All
                 </ActiveLink>
               </li>
               {formats?.map((tab, index) => (
@@ -97,7 +97,7 @@ const FormatPageLayout = ({ type, posts, formats, item, header, useSlug = true }
                     href={`/${type}/${slug}/format/${tab.slug}`}
                     activeClassName="active"
                   >
-                    <a>{tab.name}</a>
+                    {tab.name}
                   </ActiveLink>
                 </li>
               ))}

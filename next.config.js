@@ -1,6 +1,9 @@
 const basePath = process.NODE_ENV === 'production' ? '' : process.env.NEXT_PUBLIC_BASE_PATH;
 
 module.exports = {
+  experimental: {
+    appDir: true,
+  },
   reactStrictMode: true,
   // eslint: {
   //   ignoreDuringBuilds: true,
@@ -28,19 +31,19 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/sitemap-posts-:path*.xml',
+        source: '/sitemap-posts-:path.xml',
         destination: '/sitemap-posts/:path*',
       },
       {
-        source: '/sitemap-categories-:path*.xml',
+        source: '/sitemap-categories-:path.xml',
         destination: '/sitemap-categories/:path*',
       },
       {
-        source: '/sitemap-authors-:path*.xml',
+        source: '/sitemap-authors-:path.xml',
         destination: '/sitemap-authors/:path*',
       },
       {
-        source: '/sitemap-tags-:path*.xml',
+        source: '/sitemap-tags-:path.xml',
         destination: '/sitemap-tags/:path*',
       },
     ]

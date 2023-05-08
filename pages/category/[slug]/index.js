@@ -1,8 +1,8 @@
 /** @jsx jsx */
 /** @jsxRuntime classic */
 import React, { useState, useEffect } from 'react'; // eslint-disable-line no-unused-vars
-import { jsx } from 'theme-ui';
 import gql from 'graphql-tag';
+import { jsx } from 'theme-ui';
 import parseEditorJsData from 'src/utils/parseEditorJsData';
 import FormatPageLayout from 'components/FormatPageLayout';
 import { client } from 'store/client';
@@ -34,7 +34,8 @@ function CategoryDetailsAll({ data }) {
       >
         <h1
           sx={{
-            textAlign: 'center',
+            display: 'flex',
+            justifyContent: 'center',
             fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
             mb: (theme) => `${theme.space.spacing5}`,
             textTransform: 'capitalize',
